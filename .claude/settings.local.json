@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:zck-kpz-platform.rks-gov.net)",
+      "Bash(mysql:*)",
+      "Bash(cd:*)",
+      "Bash(php artisan:*)",
+      "Bash(npm install:*)",
+      "Bash(curl:*)"
+    ]
+  }
+}
