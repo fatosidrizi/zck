@@ -29,29 +29,29 @@
             </div>
 
             <div>
-                <h3 class="text-[#c8a84e] font-semibold mb-4 text-sm uppercase tracking-wider">Quick Links</h3>
+                <h3 class="text-[#c8a84e] font-semibold mb-4 text-sm uppercase tracking-wider">{{ __('ui.quick_links') }}</h3>
                 <ul class="space-y-2 text-sm">
-                    <li><a href="{{ route('home') }}" class="hover:text-[#c8a84e] transition">Home</a></li>
-                    <li><a href="{{ route('about') }}" class="hover:text-[#c8a84e] transition">About Us</a></li>
-                    <li><a href="{{ route('news.index') }}" class="hover:text-[#c8a84e] transition">News</a></li>
-                    <li><a href="{{ route('public-calls.index') }}" class="hover:text-[#c8a84e] transition">Public Calls</a></li>
-                    <li><a href="{{ route('contact') }}" class="hover:text-[#c8a84e] transition">Contact</a></li>
+                    <li><a href="{{ route('home') }}" class="hover:text-[#c8a84e] transition">{{ __('ui.nav_home') }}</a></li>
+                    <li><a href="{{ route('about') }}" class="hover:text-[#c8a84e] transition">{{ __('ui.nav_about') }}</a></li>
+                    <li><a href="{{ route('news.index') }}" class="hover:text-[#c8a84e] transition">{{ __('ui.nav_news') }}</a></li>
+                    <li><a href="{{ route('public-calls.index') }}" class="hover:text-[#c8a84e] transition">{{ __('ui.nav_public_calls') }}</a></li>
+                    <li><a href="{{ route('contact') }}" class="hover:text-[#c8a84e] transition">{{ __('ui.nav_contact') }}</a></li>
                 </ul>
             </div>
 
             <div>
-                <h3 class="text-[#c8a84e] font-semibold mb-4 text-sm uppercase tracking-wider">Resources</h3>
+                <h3 class="text-[#c8a84e] font-semibold mb-4 text-sm uppercase tracking-wider">{{ __('ui.resources') }}</h3>
                 <ul class="space-y-2 text-sm">
-                    <li><a href="{{ route('register') }}" class="hover:text-[#c8a84e] transition">Register Your NGO</a></li>
-                    <li><a href="{{ route('reports.create') }}" class="hover:text-[#c8a84e] transition">Report Discrimination</a></li>
-                    <li><a href="{{ route('reports.track') }}" class="hover:text-[#c8a84e] transition">Track Your Report</a></li>
-                    <li><a href="{{ route('ngos.index') }}" class="hover:text-[#c8a84e] transition">NGO Directory</a></li>
-                    <li><a href="{{ route('communities.index') }}" class="hover:text-[#c8a84e] transition">Communities</a></li>
+                    <li><a href="{{ route('register') }}" class="hover:text-[#c8a84e] transition">{{ __('ui.register_ngo') }}</a></li>
+                    <li><a href="{{ route('reports.create') }}" class="hover:text-[#c8a84e] transition">{{ __('ui.report_discrimination') }}</a></li>
+                    <li><a href="{{ route('reports.track') }}" class="hover:text-[#c8a84e] transition">{{ __('ui.track_report') }}</a></li>
+                    <li><a href="{{ route('ngos.index') }}" class="hover:text-[#c8a84e] transition">{{ __('ui.ngo_directory') }}</a></li>
+                    <li><a href="{{ route('communities.index') }}" class="hover:text-[#c8a84e] transition">{{ __('ui.nav_communities') }}</a></li>
                 </ul>
             </div>
 
             <div>
-                <h3 class="text-[#c8a84e] font-semibold mb-4 text-sm uppercase tracking-wider">Institutions</h3>
+                <h3 class="text-[#c8a84e] font-semibold mb-4 text-sm uppercase tracking-wider">{{ __('ui.institutions') }}</h3>
                 <ul class="space-y-2 text-sm">
                     <li><a href="https://www.avokati-popullit.org/" target="_blank" rel="noopener" class="hover:text-[#c8a84e] transition">Ombudsman Office</a></li>
                     <li><a href="https://ald.rks-gov.net/" target="_blank" rel="noopener" class="hover:text-[#c8a84e] transition">Agency for Legal Aid</a></li>
@@ -66,7 +66,7 @@
 
     <div class="border-t border-gray-700">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 text-center text-xs text-gray-500">
-            &copy; {{ date('Y') }} Zyra për Çështje të Komuniteteve - Zyra e Kryeministrit, Republika e Kosovës. All rights reserved.
+            &copy; {{ date('Y') }} {{ __('ui.office_name') }} - {{ __('ui.office_subtitle') }}. {{ __('ui.all_rights') }}
         </div>
     </div>
 </footer>

@@ -19,7 +19,7 @@
                     <p class="text-sm text-gray-500 mb-6">Deadline: {{ $call->deadline->format('F d, Y') }}</p>
                 @endif
                 <div class="prose max-w-none text-gray-600 mb-6">
-                    {!! nl2br(e($call->body)) !!}
+                    {!! $call->body !!}
                 </div>
                 @if($call->attachment)
                     <a href="{{ asset('storage/' . $call->attachment) }}" class="inline-flex items-center gap-2 bg-[#32373c] hover:bg-[#23282d] text-white px-5 py-2.5 rounded transition" download>

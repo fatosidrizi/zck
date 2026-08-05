@@ -9,7 +9,7 @@
     <meta property="og:description" content="@yield('meta_description', 'Platform of the Office for Community Issues - Prime Minister Office, Kosovo')">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:image" content="{{ asset('images/logo.svg') }}">
+    <meta property="og:image" content="{{ asset('images/logo.png') }}">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="{{ url()->current() }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])

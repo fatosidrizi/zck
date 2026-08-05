@@ -35,7 +35,7 @@ class EventController extends Controller
         return view('events.index', compact('upcoming', 'past', 'communities', 'calendarEvents', 'calendarMonth'));
     }
 
-    public function show(string $slug)
+    public function show(string $locale, string $slug)
     {
         $event = Event::with('community')->where('slug', $slug)->firstOrFail();
         return view('events.show', compact('event'));

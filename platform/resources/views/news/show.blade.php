@@ -18,7 +18,7 @@
                     </div>
                     <h1 class="text-3xl font-bold text-gray-900 mb-6">{{ $article->title }}</h1>
                     <div class="prose max-w-none text-gray-600">
-                        {!! nl2br(e($article->body)) !!}
+                        {!! $article->body !!}
                     </div>
                 </div>
             </article>

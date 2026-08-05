@@ -114,7 +114,7 @@ class AuthController extends Controller
             : back()->withErrors(['email' => __($status)]);
     }
 
-    public function showResetPassword(Request $request, string $token)
+    public function showResetPassword(Request $request, string $locale, string $token)
     {
         return view('auth.reset-password', ['token' => $token, 'email' => $request->email]);
     }

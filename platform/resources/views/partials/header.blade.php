@@ -1,8 +1,19 @@
 {{-- Top bar --}}
 <div class="bg-[#014DA4] text-white text-xs py-1.5">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-        <span>Zyra për Çështje të Komuniteteve - Zyra e Kryeministrit</span>
+        <span>{{ __('ui.top_bar') }}</span>
         <div class="hidden sm:flex items-center space-x-3">
+            {{-- Language switcher --}}
+            @php
+    $otherLocale = app()->getLocale() === 'en' ? 'sq' : 'en';
+    $currentPath = request()->path();
+    $switchedPath = preg_replace('#^(' . app()->getLocale() . ')(/|$)#', $otherLocale . '$2', $currentPath);
+@endphp
+            <a href="{{ url($switchedPath) }}"
+               class="font-semibold hover:text-[#c8a84e] transition px-1.5 py-0.5 border border-white/30 rounded text-[10px] uppercase">
+                {{ $otherLocale === 'sq' ? 'SQ' : 'EN' }}
+            </a>
+            <span class="text-white/30">|</span>
             <a href="https://www.facebook.com" target="_blank" rel="noopener" class="hover:text-[#c8a84e] transition">
                 <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
             </a>
@@ -24,11 +35,11 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center py-3">
             <a href="{{ route('home') }}" class="flex items-center space-x-3">
-                <img src="{{ asset('images/logo.svg') }}" alt="Kosovo Coat of Arms" class="h-14 w-auto">
+                <img src="{{ asset('images/logo.png') }}" alt="Kosovo Coat of Arms" class="h-14 w-auto">
                 <div>
-                    <div class="text-sm font-bold text-[#014DA4] leading-tight">Platforma e Zyrës për</div>
-                    <div class="text-sm font-bold text-[#014DA4] leading-tight">Çështje të Komuniteteve</div>
-                    <div class="text-[10px] text-gray-500 leading-tight mt-0.5">Office for Community Issues - Prime Minister's Office</div>
+                    <div class="text-sm font-bold text-[#014DA4] leading-tight">{{ __('ui.platform_line1') }}</div>
+                    <div class="text-sm font-bold text-[#014DA4] leading-tight">{{ __('ui.platform_line2') }}</div>
+                    <div class="text-[10px] text-gray-500 leading-tight mt-0.5">{{ __('ui.office_name') }} - {{ __('ui.office_subtitle') }}</div>
                 </div>
             </a>
 
@@ -36,24 +47,31 @@
                 @auth
                     <a href="{{ route('profile') }}" class="text-sm font-medium text-gray-700 hover:text-[#014DA4] px-3 py-2 transition">{{ Auth::user()->name }}</a>
                     @if(Auth::user()->isStaff())
-                        <a href="/admin" class="text-sm font-medium text-gray-700 hover:text-[#014DA4] px-3 py-2 transition">Admin</a>
+                        <a href="/admin" class="text-sm font-medium text-gray-700 hover:text-[#014DA4] px-3 py-2 transition">{{ __('ui.admin') }}</a>
                     @endif
                     <form action="{{ route('logout') }}" method="POST" class="inline">
                         @csrf
-                        <button type="submit" class="text-sm font-medium text-gray-500 hover:text-red-600 px-3 py-2 transition">Logout</button>
+                        <button type="submit" class="text-sm font-medium text-gray-500 hover:text-red-600 px-3 py-2 transition">{{ __('ui.logout') }}</button>
                     </form>
                 @else
-                    <a href="{{ route('login') }}" class="text-sm font-medium text-gray-700 hover:text-[#014DA4] px-3 py-2 transition">Login</a>
+                    <a href="{{ route('login') }}" class="text-sm font-medium text-gray-700 hover:text-[#014DA4] px-3 py-2 transition">{{ __('ui.login') }}</a>
                 @endauth
-                <a href="{{ route('register') }}" class="bg-[#32373c] hover:bg-[#23282d] text-white text-sm font-medium px-5 py-2 rounded transition">Register NGO</a>
-                <a href="{{ route('reports.create') }}" class="bg-[#014DA4] hover:bg-[#013b7a] text-white text-sm font-medium px-5 py-2 rounded transition">Report Discrimination</a>
+                <a href="{{ route('register') }}" class="bg-[#32373c] hover:bg-[#23282d] text-white text-sm font-medium px-5 py-2 rounded transition">{{ __('ui.register_ngo') }}</a>
+                <a href="{{ route('reports.create') }}" class="bg-[#014DA4] hover:bg-[#013b7a] text-white text-sm font-medium px-5 py-2 rounded transition">{{ __('ui.report_discrimination') }}</a>
             </div>
 
-            <button id="mobile-menu-btn" class="lg:hidden p-2 rounded hover:bg-gray-100">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                </svg>
-            </button>
+            {{-- Mobile: language switcher + hamburger --}}
+            <div class="lg:hidden flex items-center space-x-2">
+                <a href="{{ url($switchedPath) }}"
+                   class="text-[10px] font-bold text-[#014DA4] border border-[#014DA4] rounded px-2 py-1 uppercase">
+                    {{ $otherLocale === 'sq' ? 'SQ' : 'EN' }}
+                </a>
+                <button id="mobile-menu-btn" class="p-2 rounded hover:bg-gray-100">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
         </div>
     </div>
 
@@ -61,24 +79,24 @@
     <nav class="hidden lg:block bg-[#014DA4]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center space-x-1">
-                <a href="{{ route('home') }}" class="text-white text-sm font-medium px-4 py-3 hover:bg-[#013b7a] transition">Home</a>
-                <a href="{{ route('about') }}" class="text-white text-sm font-medium px-4 py-3 hover:bg-[#013b7a] transition">About Us</a>
-                <a href="{{ route('ngos.index') }}" class="text-white text-sm font-medium px-4 py-3 hover:bg-[#013b7a] transition">NGOs</a>
+                <a href="{{ route('home') }}" class="text-white text-sm font-medium px-4 py-3 hover:bg-[#013b7a] transition">{{ __('ui.nav_home') }}</a>
+                <a href="{{ route('about') }}" class="text-white text-sm font-medium px-4 py-3 hover:bg-[#013b7a] transition">{{ __('ui.nav_about') }}</a>
+                <a href="{{ route('ngos.index') }}" class="text-white text-sm font-medium px-4 py-3 hover:bg-[#013b7a] transition">{{ __('ui.nav_ngos') }}</a>
                 <div class="relative group">
                     <button class="text-white text-sm font-medium px-4 py-3 hover:bg-[#013b7a] transition flex items-center">
-                        News
+                        {{ __('ui.nav_news') }}
                         <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                     </button>
                     <div class="absolute left-0 top-full bg-white shadow-lg rounded-b-lg min-w-[180px] hidden group-hover:block z-50">
-                        <a href="{{ route('news.index') }}" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#014DA4]">All News</a>
-                        <a href="{{ route('news.index', ['category' => 'bulletin']) }}" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#014DA4]">Bulletins</a>
-                        <a href="{{ route('news.index', ['category' => 'report']) }}" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#014DA4]">Reports</a>
+                        <a href="{{ route('news.index') }}" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#014DA4]">{{ __('ui.nav_all_news') }}</a>
+                        <a href="{{ route('news.index', ['category' => 'bulletin']) }}" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#014DA4]">{{ __('ui.nav_bulletins') }}</a>
+                        <a href="{{ route('news.index', ['category' => 'report']) }}" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#014DA4]">{{ __('ui.nav_reports') }}</a>
                     </div>
                 </div>
-                <a href="{{ route('communities.index') }}" class="text-white text-sm font-medium px-4 py-3 hover:bg-[#013b7a] transition">Communities</a>
-                <a href="{{ route('public-calls.index') }}" class="text-white text-sm font-medium px-4 py-3 hover:bg-[#013b7a] transition">Public Calls</a>
-                <a href="{{ route('events.index') }}" class="text-white text-sm font-medium px-4 py-3 hover:bg-[#013b7a] transition">Events</a>
-                <a href="{{ route('contact') }}" class="text-white text-sm font-medium px-4 py-3 hover:bg-[#013b7a] transition">Contact</a>
+                <a href="{{ route('communities.index') }}" class="text-white text-sm font-medium px-4 py-3 hover:bg-[#013b7a] transition">{{ __('ui.nav_communities') }}</a>
+                <a href="{{ route('public-calls.index') }}" class="text-white text-sm font-medium px-4 py-3 hover:bg-[#013b7a] transition">{{ __('ui.nav_public_calls') }}</a>
+                <a href="{{ route('events.index') }}" class="text-white text-sm font-medium px-4 py-3 hover:bg-[#013b7a] transition">{{ __('ui.nav_events') }}</a>
+                <a href="{{ route('contact') }}" class="text-white text-sm font-medium px-4 py-3 hover:bg-[#013b7a] transition">{{ __('ui.nav_contact') }}</a>
             </div>
         </div>
     </nav>
@@ -86,27 +104,27 @@
     {{-- Mobile menu --}}
     <div id="mobile-menu" class="hidden lg:hidden border-t border-gray-200 bg-white">
         <div class="px-4 py-3 space-y-1">
-            <a href="{{ route('home') }}" class="block text-sm font-medium text-gray-700 py-2 px-3 rounded hover:bg-gray-50">Home</a>
-            <a href="{{ route('about') }}" class="block text-sm font-medium text-gray-700 py-2 px-3 rounded hover:bg-gray-50">About Us</a>
-            <a href="{{ route('ngos.index') }}" class="block text-sm font-medium text-gray-700 py-2 px-3 rounded hover:bg-gray-50">NGOs</a>
-            <a href="{{ route('news.index') }}" class="block text-sm font-medium text-gray-700 py-2 px-3 rounded hover:bg-gray-50">News</a>
-            <a href="{{ route('communities.index') }}" class="block text-sm font-medium text-gray-700 py-2 px-3 rounded hover:bg-gray-50">Communities</a>
-            <a href="{{ route('public-calls.index') }}" class="block text-sm font-medium text-gray-700 py-2 px-3 rounded hover:bg-gray-50">Public Calls</a>
-            <a href="{{ route('events.index') }}" class="block text-sm font-medium text-gray-700 py-2 px-3 rounded hover:bg-gray-50">Events</a>
-            <a href="{{ route('contact') }}" class="block text-sm font-medium text-gray-700 py-2 px-3 rounded hover:bg-gray-50">Contact</a>
+            <a href="{{ route('home') }}" class="block text-sm font-medium text-gray-700 py-2 px-3 rounded hover:bg-gray-50">{{ __('ui.nav_home') }}</a>
+            <a href="{{ route('about') }}" class="block text-sm font-medium text-gray-700 py-2 px-3 rounded hover:bg-gray-50">{{ __('ui.nav_about') }}</a>
+            <a href="{{ route('ngos.index') }}" class="block text-sm font-medium text-gray-700 py-2 px-3 rounded hover:bg-gray-50">{{ __('ui.nav_ngos') }}</a>
+            <a href="{{ route('news.index') }}" class="block text-sm font-medium text-gray-700 py-2 px-3 rounded hover:bg-gray-50">{{ __('ui.nav_news') }}</a>
+            <a href="{{ route('communities.index') }}" class="block text-sm font-medium text-gray-700 py-2 px-3 rounded hover:bg-gray-50">{{ __('ui.nav_communities') }}</a>
+            <a href="{{ route('public-calls.index') }}" class="block text-sm font-medium text-gray-700 py-2 px-3 rounded hover:bg-gray-50">{{ __('ui.nav_public_calls') }}</a>
+            <a href="{{ route('events.index') }}" class="block text-sm font-medium text-gray-700 py-2 px-3 rounded hover:bg-gray-50">{{ __('ui.nav_events') }}</a>
+            <a href="{{ route('contact') }}" class="block text-sm font-medium text-gray-700 py-2 px-3 rounded hover:bg-gray-50">{{ __('ui.nav_contact') }}</a>
             <div class="pt-2 space-y-2">
                 @auth
-                    <a href="{{ route('profile') }}" class="block text-sm font-medium text-gray-700 py-2 px-3 rounded hover:bg-gray-50">My Profile</a>
+                    <a href="{{ route('profile') }}" class="block text-sm font-medium text-gray-700 py-2 px-3 rounded hover:bg-gray-50">{{ __('ui.my_profile') }}</a>
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
-                        <button type="submit" class="block w-full text-left text-sm font-medium text-red-600 py-2 px-3 rounded hover:bg-gray-50">Logout</button>
+                        <button type="submit" class="block w-full text-left text-sm font-medium text-red-600 py-2 px-3 rounded hover:bg-gray-50">{{ __('ui.logout') }}</button>
                     </form>
                 @else
-                    <a href="{{ route('login') }}" class="block text-sm font-medium text-gray-700 py-2 px-3 rounded hover:bg-gray-50">Login</a>
-                    <a href="{{ route('user.register') }}" class="block text-sm font-medium text-gray-700 py-2 px-3 rounded hover:bg-gray-50">Sign Up</a>
+                    <a href="{{ route('login') }}" class="block text-sm font-medium text-gray-700 py-2 px-3 rounded hover:bg-gray-50">{{ __('ui.login') }}</a>
+                    <a href="{{ route('user.register') }}" class="block text-sm font-medium text-gray-700 py-2 px-3 rounded hover:bg-gray-50">{{ __('ui.signup') }}</a>
                 @endauth
-                <a href="{{ route('register') }}" class="block text-sm font-medium text-white bg-[#32373c] text-center px-4 py-2.5 rounded">Register NGO</a>
-                <a href="{{ route('reports.create') }}" class="block text-sm font-medium text-white bg-[#014DA4] text-center px-4 py-2.5 rounded">Report Discrimination</a>
+                <a href="{{ route('register') }}" class="block text-sm font-medium text-white bg-[#32373c] text-center px-4 py-2.5 rounded">{{ __('ui.register_ngo') }}</a>
+                <a href="{{ route('reports.create') }}" class="block text-sm font-medium text-white bg-[#014DA4] text-center px-4 py-2.5 rounded">{{ __('ui.report_discrimination') }}</a>
             </div>
         </div>
     </div>

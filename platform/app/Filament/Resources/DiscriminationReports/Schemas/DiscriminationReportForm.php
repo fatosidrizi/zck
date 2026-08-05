@@ -5,7 +5,7 @@ namespace App\Filament\Resources\DiscriminationReports\Schemas;
 use App\Models\User;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Section;
+use Filament\Schemas\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
@@ -66,6 +66,7 @@ class DiscriminationReportForm
                             ->rows(5)
                             ->columnSpanFull(),
                         FileUpload::make('evidence_file')
+                            ->disk('public')
                             ->directory('reports/evidence')
                             ->columnSpanFull(),
                     ]),

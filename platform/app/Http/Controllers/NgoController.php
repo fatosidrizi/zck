@@ -22,7 +22,7 @@ class NgoController extends Controller
         return view('ngos.index', compact('ngos'));
     }
 
-    public function show(string $slug)
+    public function show(string $locale, string $slug)
     {
         $ngo = Ngo::where('slug', $slug)->where('is_active', true)->firstOrFail();
         return view('ngos.show', compact('ngo'));

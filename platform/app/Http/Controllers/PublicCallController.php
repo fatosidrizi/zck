@@ -18,7 +18,7 @@ class PublicCallController extends Controller
         return view('public-calls.index', compact('calls'));
     }
 
-    public function show(string $slug)
+    public function show(string $locale, string $slug)
     {
         $call = PublicCall::published()->where('slug', $slug)->firstOrFail();
         return view('public-calls.show', compact('call'));

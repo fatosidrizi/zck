@@ -4,9 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Spatie\Translatable\HasTranslations;
 
 class News extends Model
 {
+    use HasTranslations;
+
+    public array $translatable = ['title', 'body'];
+
     protected $fillable = [
         'title', 'slug', 'body', 'image', 'category', 'status', 'published_at', 'author_id',
     ];

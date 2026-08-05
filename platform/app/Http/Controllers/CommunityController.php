@@ -12,7 +12,7 @@ class CommunityController extends Controller
         return view('communities.index', compact('communities'));
     }
 
-    public function show(string $slug)
+    public function show(string $locale, string $slug)
     {
         $community = Community::where('slug', $slug)->firstOrFail();
         return view('communities.show', compact('community'));

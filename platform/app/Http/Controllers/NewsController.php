@@ -18,7 +18,7 @@ class NewsController extends Controller
         return view('news.index', compact('articles'));
     }
 
-    public function show(string $slug)
+    public function show(string $locale, string $slug)
     {
         $article = News::published()->where('slug', $slug)->firstOrFail();
         return view('news.show', compact('article'));

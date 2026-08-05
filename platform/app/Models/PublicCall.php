@@ -4,9 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Spatie\Translatable\HasTranslations;
 
 class PublicCall extends Model
 {
+    use HasTranslations;
+
+    public array $translatable = ['title', 'body'];
+
     protected $fillable = [
         'title', 'slug', 'body', 'type', 'attachment', 'deadline', 'status', 'author_id',
     ];
