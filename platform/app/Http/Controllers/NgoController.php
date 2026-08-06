@@ -9,11 +9,11 @@ class NgoController extends Controller
 {
     public function index(Request $request)
     {
-        $ngos = Ngo::where('is_active', true)
+        $ngos = Ngo::published()
             ->when($request->search, function ($q, $search) {
                 $q->where('name', 'like', "%{$search}%")
-                  ->orWhere('location', 'like', "%{$search}%")
-                  ->orWhere('category', 'like', "%{$search}%");
+                    ->orWhere('location', 'like', "%{$search}%")
+                    ->orWhere('category', 'like', "%{$search}%");
             })
             ->orderBy('name')
             ->paginate(12)
@@ -24,7 +24,8 @@ class NgoController extends Controller
 
     public function show(string $locale, string $slug)
     {
-        $ngo = Ngo::where('slug', $slug)->where('is_active', true)->firstOrFail();
+        $ngo = Ngo::published()->where('slug', $slug)->firstOrFail();
+
         return view('ngos.show', compact('ngo'));
     }
 }

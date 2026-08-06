@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Ngos;
 use App\Filament\Resources\Ngos\Pages\CreateNgo;
 use App\Filament\Resources\Ngos\Pages\EditNgo;
 use App\Filament\Resources\Ngos\Pages\ListNgos;
+use App\Filament\Resources\Ngos\RelationManagers\StatusHistoriesRelationManager;
 use App\Filament\Resources\Ngos\Schemas\NgoForm;
 use App\Filament\Resources\Ngos\Tables\NgosTable;
 use App\Models\Ngo;
@@ -33,7 +34,7 @@ class NgoResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            StatusHistoriesRelationManager::class,
         ];
     }
 

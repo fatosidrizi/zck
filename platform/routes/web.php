@@ -13,7 +13,7 @@ use App\Http\Middleware\SetLocale;
 use Illuminate\Support\Facades\Route;
 
 // Redirect root to default locale
-Route::get('/', fn () => redirect('/' . config('app.locale')));
+Route::get('/', fn () => redirect('/'.config('app.locale')));
 
 // Sitemap (no locale prefix)
 Route::get('/sitemap.xml', [PageController::class, 'sitemap'])->name('sitemap');
@@ -50,9 +50,13 @@ Route::prefix('{locale}')
         Route::get('/events', [EventController::class, 'index'])->name('events.index');
         Route::get('/events/{slug}', [EventController::class, 'show'])->name('events.show');
 
-        // NGO Registration
+        // NGO Registration (multi-step)
         Route::get('/register', [RegisterController::class, 'create'])->name('register');
-        Route::post('/register', [RegisterController::class, 'store'])->name('register.store')->middleware('throttle:3,1');
+        Route::get('/register/complete', [RegisterController::class, 'complete'])->name('register.complete');
+        Route::get('/register/track', [RegisterController::class, 'track'])->name('register.track');
+        Route::get('/register/step/{step}', [RegisterController::class, 'show'])->whereNumber('step')->name('register.step');
+        Route::post('/register/step/{step}', [RegisterController::class, 'update'])->whereNumber('step')->name('register.step.store')->middleware('throttle:registration-steps');
+        Route::post('/register', [RegisterController::class, 'store'])->name('register.store')->middleware('throttle:registration-submit');
 
         // Discrimination Reports
         Route::get('/report', [ReportController::class, 'create'])->name('reports.create');

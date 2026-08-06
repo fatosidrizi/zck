@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Community;
-use App\Models\DiscriminationReport;
 use App\Models\Event;
 use App\Models\News;
 use App\Models\Ngo;
@@ -15,7 +14,7 @@ class PageController extends Controller
     public function home()
     {
         $stats = [
-            'ngos' => Ngo::where('is_active', true)->count(),
+            'ngos' => Ngo::published()->count(),
             'communities' => Community::count(),
             'donors' => 0,
             'events' => Event::count(),
@@ -31,7 +30,7 @@ class PageController extends Controller
             ->limit(5)
             ->get();
 
-        $activeNgos = Ngo::where('is_active', true)
+        $activeNgos = Ngo::published()
             ->orderByDesc('created_at')
             ->limit(6)
             ->get();
@@ -80,23 +79,23 @@ class PageController extends Controller
         ];
 
         foreach ($static as $page) {
-            $xml .= '<url><loc>' . route($page['route']) . '</loc><changefreq>' . $page['freq'] . '</changefreq><priority>' . $page['priority'] . '</priority></url>';
+            $xml .= '<url><loc>'.route($page['route']).'</loc><changefreq>'.$page['freq'].'</changefreq><priority>'.$page['priority'].'</priority></url>';
         }
 
         foreach (News::published()->get() as $item) {
-            $xml .= '<url><loc>' . route('news.show', $item->slug) . '</loc><lastmod>' . $item->updated_at->toAtomString() . '</lastmod><priority>0.6</priority></url>';
+            $xml .= '<url><loc>'.route('news.show', $item->slug).'</loc><lastmod>'.$item->updated_at->toAtomString().'</lastmod><priority>0.6</priority></url>';
         }
         foreach (PublicCall::published()->get() as $item) {
-            $xml .= '<url><loc>' . route('public-calls.show', $item->slug) . '</loc><lastmod>' . $item->updated_at->toAtomString() . '</lastmod><priority>0.6</priority></url>';
+            $xml .= '<url><loc>'.route('public-calls.show', $item->slug).'</loc><lastmod>'.$item->updated_at->toAtomString().'</lastmod><priority>0.6</priority></url>';
         }
-        foreach (Ngo::where('is_active', true)->get() as $item) {
-            $xml .= '<url><loc>' . route('ngos.show', $item->slug) . '</loc><lastmod>' . $item->updated_at->toAtomString() . '</lastmod><priority>0.5</priority></url>';
+        foreach (Ngo::published()->get() as $item) {
+            $xml .= '<url><loc>'.route('ngos.show', $item->slug).'</loc><lastmod>'.$item->updated_at->toAtomString().'</lastmod><priority>0.5</priority></url>';
         }
         foreach (Community::all() as $item) {
-            $xml .= '<url><loc>' . route('communities.show', $item->slug) . '</loc><lastmod>' . $item->updated_at->toAtomString() . '</lastmod><priority>0.5</priority></url>';
+            $xml .= '<url><loc>'.route('communities.show', $item->slug).'</loc><lastmod>'.$item->updated_at->toAtomString().'</lastmod><priority>0.5</priority></url>';
         }
         foreach (Event::all() as $item) {
-            $xml .= '<url><loc>' . route('events.show', $item->slug) . '</loc><lastmod>' . $item->updated_at->toAtomString() . '</lastmod><priority>0.5</priority></url>';
+            $xml .= '<url><loc>'.route('events.show', $item->slug).'</loc><lastmod>'.$item->updated_at->toAtomString().'</lastmod><priority>0.5</priority></url>';
         }
 
         $xml .= '</urlset>';
