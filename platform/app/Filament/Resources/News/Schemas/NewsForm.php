@@ -4,6 +4,7 @@ namespace App\Filament\Resources\News\Schemas;
 
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\RichEditor;
 use Filament\Schemas\Components\Section;
 use Filament\Forms\Components\Select;
@@ -11,14 +12,37 @@ use Filament\Schemas\Components\Tabs;
 use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
+use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
 
 class NewsForm
 {
     public static function configure(Schema $schema): Schema
     {
+        $toolbarButtons = ['bold', 'italic', 'underline', 'strike', 'h2', 'h3', 'bulletList', 'orderedList', 'link', 'blockquote', 'redo', 'undo'];
+
         return $schema
             ->components([
+                // Translation status banner (only on edit)
+                Placeholder::make('translation_status')
+                    ->label('')
+                    ->content(function ($record) {
+                        if (!$record) return '';
+                        $missing = [];
+                        foreach (['en' => 'English', 'sq' => 'Shqip'] as $code => $label) {
+                            if (!$record->getTranslation('title', $code, false)) {
+                                $missing[] = $label;
+                            }
+                        }
+                        if (empty($missing)) {
+                            return new HtmlString('<div style="padding:8px 12px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;color:#166534;font-size:13px;">All translations complete</div>');
+                        }
+                        $list = implode(', ', $missing);
+                        return new HtmlString('<div style="padding:8px 12px;background:#fef2f2;border:1px solid #fecaca;border-radius:8px;color:#991b1b;font-size:13px;">Missing translations: <strong>' . $list . '</strong></div>');
+                    })
+                    ->columnSpanFull()
+                    ->hiddenOn('create'),
+
                 Tabs::make('Translations')
                     ->tabs([
                         Tab::make('English')
@@ -31,14 +55,7 @@ class NewsForm
                                 RichEditor::make('body.en')
                                     ->label('Body (EN)')
                                     ->required()
-                                    ->toolbarButtons([
-                                        'bold', 'italic', 'underline', 'strike',
-                                        'h2', 'h3',
-                                        'bulletList', 'orderedList',
-                                        'link',
-                                        'blockquote',
-                                        'redo', 'undo',
-                                    ]),
+                                    ->toolbarButtons($toolbarButtons),
                             ]),
                         Tab::make('Shqip')
                             ->schema([
@@ -46,14 +63,7 @@ class NewsForm
                                     ->label('Title (SQ)'),
                                 RichEditor::make('body.sq')
                                     ->label('Body (SQ)')
-                                    ->toolbarButtons([
-                                        'bold', 'italic', 'underline', 'strike',
-                                        'h2', 'h3',
-                                        'bulletList', 'orderedList',
-                                        'link',
-                                        'blockquote',
-                                        'redo', 'undo',
-                                    ]),
+                                    ->toolbarButtons($toolbarButtons),
                             ]),
                     ])->columnSpanFull(),
 
