@@ -13,6 +13,7 @@ return [
     'signup' => 'Regjistrohu',
     'my_profile' => 'Profili Im',
     'admin' => 'Admin',
+    'view_site' => 'Shiko Faqen',
     'top_bar' => 'Zyra për Çështje të Komuniteteve - Zyra e Kryeministrit',
 
     // Navigation

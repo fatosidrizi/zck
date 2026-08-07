@@ -13,6 +13,7 @@ return [
     'signup' => 'Sign Up',
     'my_profile' => 'My Profile',
     'admin' => 'Admin',
+    'view_site' => 'View Site',
     'top_bar' => 'Office for Community Issues - Prime Minister\'s Office',
 
     // Navigation
