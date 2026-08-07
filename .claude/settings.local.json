@@ -6,7 +6,9 @@
       "Bash(cd:*)",
       "Bash(php artisan:*)",
       "Bash(npm install:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(rm -f /tmp/claude-501/-Users-fatos-Dev-zck/505e844b-ccab-42de-b783-471326421a20/scratchpad/lang-en.png)",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --hide-scrollbars --screenshot=/tmp/claude-501/-Users-fatos-Dev-zck/505e844b-ccab-42de-b783-471326421a20/scratchpad/lang-en.png --window-size=1440,300 http://127.0.0.1:8899/en)"
     ]
   }
 }

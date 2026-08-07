@@ -13,6 +13,12 @@ return [
     'signup' => 'Sign Up',
     'my_profile' => 'My Profile',
     'admin' => 'Admin',
+    'admin_panel' => 'Admin Panel',
+    'account_menu' => 'Account menu',
+    'signed_in_as' => 'Signed in as',
+    'menu' => 'Menu',
+    'language' => 'Language',
+    'nav_primary' => 'Primary',
     'view_site' => 'View Site',
     'top_bar' => 'Office for Community Issues - Prime Minister\'s Office',
 
@@ -32,7 +38,6 @@ return [
     // Homepage
     'hero_title' => 'For a brighter tomorrow',
     'hero_subtitle' => 'Mobilizing and organizing citizens through strategic planning to solve community problems.',
-    'register_org' => 'Register Your Organization',
     'stats_ngos' => 'NGOs',
     'stats_communities' => 'Communities',
     'stats_donors' => 'Donors',

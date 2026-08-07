@@ -13,6 +13,12 @@ return [
     'signup' => 'Regjistrohu',
     'my_profile' => 'Profili Im',
     'admin' => 'Admin',
+    'admin_panel' => 'Paneli i Administrimit',
+    'account_menu' => 'Menyja e llogarisë',
+    'signed_in_as' => 'I kyçur si',
+    'menu' => 'Menyja',
+    'language' => 'Gjuha',
+    'nav_primary' => 'Kryesore',
     'view_site' => 'Shiko Faqen',
     'top_bar' => 'Zyra për Çështje të Komuniteteve - Zyra e Kryeministrit',
 
@@ -32,7 +38,6 @@ return [
     // Homepage
     'hero_title' => 'Për një të nesërme më të ndritur',
     'hero_subtitle' => 'Mobilizimi dhe organizimi i qytetarëve përmes planifikimit strategjik për zgjidhjen e problemeve të komuniteteve.',
-    'register_org' => 'Regjistro Organizatën Tuaj',
     'stats_ngos' => 'OJQ-të',
     'stats_communities' => 'Komunitetet',
     'stats_donors' => 'Donatorët',

@@ -13,20 +13,13 @@
 
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-24 w-full">
             <div class="max-w-2xl">
-                <div class="inline-block px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-xs font-medium text-[#c8a84e] tracking-wide mb-6 border border-white/10">
-                    {{ __('ui.office_name') }}
-                </div>
                 <h1 class="text-4xl md:text-[3.25rem] font-bold mb-5 leading-[1.15] tracking-tight">{{ __('ui.hero_title') }}</h1>
                 <p class="text-base md:text-lg text-blue-100/90 mb-9 leading-relaxed max-w-xl">
                     {{ __('ui.hero_subtitle') }}
                 </p>
                 <div class="flex flex-col sm:flex-row gap-3">
-                    <a href="{{ route('register') }}" class="bg-[#c8a84e] hover:bg-[#b8942e] text-white px-7 py-3.5 rounded-lg font-semibold transition text-center shadow-lg shadow-[#c8a84e]/20 hover:shadow-[#c8a84e]/30">
-                        {{ __('ui.register_org') }}
-                    </a>
-                    <a href="{{ route('reports.create') }}" class="bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white px-7 py-3.5 rounded-lg font-semibold transition text-center border border-white/20">
-                        {{ __('ui.report_discrimination') }}
-                    </a>
+                    <x-cta action="report" on="dark" class="!px-7 !py-3.5 !text-base" />
+                    <x-cta action="register" on="dark" class="!px-7 !py-3.5 !text-base" />
                 </div>
             </div>
         </div>
