@@ -33,7 +33,7 @@
                         </div>
                         <div class="flex justify-between">
                             <span class="text-gray-500">Type:</span>
-                            <span class="font-medium">{{ ucfirst($report->type) }}</span>
+                            <span class="font-medium">{{ \App\Http\Controllers\ReportController::types()[$report->type] ?? $report->type }}</span>
                         </div>
                         <div class="flex justify-between">
                             <span class="text-gray-500">Submitted:</span>

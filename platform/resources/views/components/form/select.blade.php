@@ -28,8 +28,10 @@
         @if($placeholder)
             <option value="">{{ $placeholder }}</option>
         @endif
-        @foreach($options as $option)
-            <option value="{{ $option }}" @selected(old($name, $value) === $option)>{{ $option }}</option>
+        {{-- A list means the label is its own value; an associative array maps value => label. --}}
+        @foreach($options as $optionValue => $optionLabel)
+            @php $optionValue = is_int($optionValue) ? $optionLabel : $optionValue; @endphp
+            <option value="{{ $optionValue }}" @selected((string) old($name, $value) === (string) $optionValue)>{{ $optionLabel }}</option>
         @endforeach
     </select>
     @if($help)

@@ -38,15 +38,7 @@ class DiscriminationReportForm
                             ->searchable()
                             ->nullable(),
                         Select::make('type')
-                            ->options([
-                                'racial' => 'Racial',
-                                'ethnic' => 'Ethnic',
-                                'religious' => 'Religious',
-                                'language' => 'Language-based',
-                                'gender' => 'Gender-based',
-                                'disability' => 'Disability-based',
-                                'other' => 'Other',
-                            ])
+                            ->options(\App\Http\Controllers\ReportController::types())
                             ->required(),
                     ])->columns(2),
 

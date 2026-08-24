@@ -24,6 +24,7 @@ class DiscriminationReportsTable
                     ->sortable(),
                 TextColumn::make('type')
                     ->badge()
+                    ->formatStateUsing(fn (string $state): string => \App\Http\Controllers\ReportController::types()[$state] ?? $state)
                     ->searchable(),
                 TextColumn::make('status')
                     ->badge()
@@ -58,15 +59,7 @@ class DiscriminationReportsTable
                         'dismissed' => 'Dismissed',
                     ]),
                 SelectFilter::make('type')
-                    ->options([
-                        'racial' => 'Racial',
-                        'ethnic' => 'Ethnic',
-                        'religious' => 'Religious',
-                        'language' => 'Language-based',
-                        'gender' => 'Gender-based',
-                        'disability' => 'Disability-based',
-                        'other' => 'Other',
-                    ]),
+                    ->options(\App\Http\Controllers\ReportController::types()),
             ])
             ->recordActions([
                 EditAction::make(),
