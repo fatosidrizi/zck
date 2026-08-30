@@ -17,9 +17,6 @@
                         @if($community->region)
                             <span>Region: {{ $community->region }}</span>
                         @endif
-                        @if($community->population)
-                            <span>Population: {{ $community->population }}</span>
-                        @endif
                     </div>
                     @if($community->description)
                         <div class="prose max-w-none text-gray-600 mb-8">

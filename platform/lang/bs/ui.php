@@ -122,7 +122,6 @@ return [
     'no_communities' => 'Nije pronađena nijedna zajednica.',
     'back_to_communities' => 'Nazad na zajednice',
     'region' => 'Regija',
-    'population' => 'Stanovništvo',
     'community_events' => 'Događaji zajednice',
 
     // Events

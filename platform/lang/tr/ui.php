@@ -122,7 +122,6 @@ return [
     'no_communities' => 'Hiç topluluk bulunamadı.',
     'back_to_communities' => 'Topluluklara Dön',
     'region' => 'Bölge',
-    'population' => 'Nüfus',
     'community_events' => 'Topluluk Etkinlikleri',
 
     // Events

@@ -122,7 +122,6 @@ return [
     'no_communities' => 'Nuk u gjetën komunitete.',
     'back_to_communities' => 'Kthehu te Komunitetet',
     'region' => 'Rajoni',
-    'population' => 'Popullsia',
     'community_events' => 'Ngjarjet e Komunitetit',
 
     // Events

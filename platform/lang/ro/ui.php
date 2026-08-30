@@ -135,7 +135,6 @@ return [
     'no_communities' => 'Nane arakhle komunitetya.',
     'back_to_communities' => 'Palpale ko komunitetya',
     'region' => 'Regioni',
-    'population' => 'Populacia',
     'community_events' => 'Ovipya e komunitetesko',
 
     // Events

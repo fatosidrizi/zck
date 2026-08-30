@@ -122,7 +122,6 @@ return [
     'no_communities' => 'No communities found.',
     'back_to_communities' => 'Back to Communities',
     'region' => 'Region',
-    'population' => 'Population',
     'community_events' => 'Community Events',
 
     // Events

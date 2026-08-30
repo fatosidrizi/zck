@@ -44,7 +44,6 @@ class CommunityForm
                     ->schema([
                         TextInput::make('slug')->required(),
                         FileUpload::make('image')->image()->disk('public')->directory('communities'),
-                        TextInput::make('population'),
                         TextInput::make('region'),
                     ])->columns(2),
             ]);

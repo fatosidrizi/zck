@@ -30,7 +30,6 @@ class CommunitiesTable
                     })
                     ->color(fn (string $state): string => str_contains($state, '!') ? 'danger' : 'success'),
                 TextColumn::make('region')->searchable(),
-                TextColumn::make('population'),
                 ImageColumn::make('image'),
             ])
             ->defaultSort('name')
