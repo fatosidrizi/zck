@@ -2,11 +2,10 @@
 
 namespace App\Filament\Resources\Communities\Schemas;
 
+use App\Filament\Support\TranslatableTabs;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Placeholder;
 use Filament\Schemas\Components\Section;
-use Filament\Schemas\Components\Tabs;
-use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Schema;
@@ -32,19 +31,14 @@ class CommunityForm
                     ->columnSpanFull()
                     ->hiddenOn('create'),
 
-                Tabs::make('Translations')
-                    ->tabs([
-                        Tab::make('English')
-                            ->schema([
-                                TextInput::make('name.en')->label('Name (EN)')->required(),
-                                Textarea::make('description.en')->label('Description (EN)')->rows(5),
-                            ]),
-                        Tab::make('Shqip')
-                            ->schema([
-                                TextInput::make('name.sq')->label('Name (SQ)'),
-                                Textarea::make('description.sq')->label('Description (SQ)')->rows(5),
-                            ]),
-                    ])->columnSpanFull(),
+                TranslatableTabs::make(fn (string $locale, bool $isDefault) => [
+                    TextInput::make("name.{$locale}")
+                        ->label('Name ('.strtoupper($locale).')')
+                        ->required($isDefault),
+                    Textarea::make("description.{$locale}")
+                        ->label('Description ('.strtoupper($locale).')')
+                        ->rows(5),
+                ]),
 
                 Section::make('Details')
                     ->schema([

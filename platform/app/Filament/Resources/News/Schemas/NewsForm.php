@@ -2,14 +2,13 @@
 
 namespace App\Filament\Resources\News\Schemas;
 
+use App\Filament\Support\TranslatableTabs;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\RichEditor;
 use Filament\Schemas\Components\Section;
 use Filament\Forms\Components\Select;
-use Filament\Schemas\Components\Tabs;
-use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 use Illuminate\Support\HtmlString;
@@ -43,29 +42,27 @@ class NewsForm
                     ->columnSpanFull()
                     ->hiddenOn('create'),
 
-                Tabs::make('Translations')
-                    ->tabs([
-                        Tab::make('English')
-                            ->schema([
-                                TextInput::make('title.en')
-                                    ->label('Title (EN)')
-                                    ->required()
-                                    ->live(onBlur: true)
-                                    ->afterStateUpdated(fn ($state, callable $set) => $set('slug', Str::slug($state))),
-                                RichEditor::make('body.en')
-                                    ->label('Body (EN)')
-                                    ->required()
-                                    ->toolbarButtons($toolbarButtons),
-                            ]),
-                        Tab::make('Shqip')
-                            ->schema([
-                                TextInput::make('title.sq')
-                                    ->label('Title (SQ)'),
-                                RichEditor::make('body.sq')
-                                    ->label('Body (SQ)')
-                                    ->toolbarButtons($toolbarButtons),
-                            ]),
-                    ])->columnSpanFull(),
+                TranslatableTabs::make(function (string $locale, bool $isDefault) use ($toolbarButtons) {
+                    $title = TextInput::make("title.{$locale}")
+                        ->label('Title ('.strtoupper($locale).')')
+                        ->required($isDefault);
+
+                    // Only the default locale seeds the slug, so translating a
+                    // title never rewrites a URL that is already published.
+                    if ($isDefault) {
+                        $title = $title
+                            ->live(onBlur: true)
+                            ->afterStateUpdated(fn ($state, callable $set) => $set('slug', Str::slug($state)));
+                    }
+
+                    return [
+                        $title,
+                        RichEditor::make("body.{$locale}")
+                            ->label('Body ('.strtoupper($locale).')')
+                            ->required($isDefault)
+                            ->toolbarButtons($toolbarButtons),
+                    ];
+                }),
 
                 Section::make('Details')
                     ->schema([

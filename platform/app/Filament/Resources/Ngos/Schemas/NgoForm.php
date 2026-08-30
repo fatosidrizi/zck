@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Ngos\Schemas;
 
+use App\Filament\Support\TranslatableTabs;
 use App\Http\Controllers\RegisterController;
 use App\Models\Ngo;
 use Filament\Forms\Components\FileUpload;
@@ -10,8 +11,6 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Section;
-use Filament\Schemas\Components\Tabs;
-use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Schemas\Schema;
 use Illuminate\Support\HtmlString;
 
@@ -225,19 +224,14 @@ class NgoForm
                     ->columnSpanFull()
                     ->hiddenOn('create'),
 
-                Tabs::make('Translations')
-                    ->tabs([
-                        Tab::make('English')
-                            ->schema([
-                                TextInput::make('name.en')->label('Name (EN)')->required(),
-                                Textarea::make('description.en')->label('Description (EN)')->rows(4),
-                            ]),
-                        Tab::make('Shqip')
-                            ->schema([
-                                TextInput::make('name.sq')->label('Name (SQ)'),
-                                Textarea::make('description.sq')->label('Description (SQ)')->rows(4),
-                            ]),
-                    ])->columnSpanFull(),
+                TranslatableTabs::make(fn (string $locale, bool $isDefault) => [
+                    TextInput::make("name.{$locale}")
+                        ->label('Name ('.strtoupper($locale).')')
+                        ->required($isDefault),
+                    Textarea::make("description.{$locale}")
+                        ->label('Description ('.strtoupper($locale).')')
+                        ->rows(4),
+                ]),
 
                 FileUpload::make('logo')->image()->disk('public')->directory('ngos'),
                 TextInput::make('slug')

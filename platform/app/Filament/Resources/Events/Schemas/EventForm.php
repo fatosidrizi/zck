@@ -2,13 +2,12 @@
 
 namespace App\Filament\Resources\Events\Schemas;
 
+use App\Filament\Support\TranslatableTabs;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Placeholder;
 use Filament\Schemas\Components\Section;
 use Filament\Forms\Components\Select;
-use Filament\Schemas\Components\Tabs;
-use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TimePicker;
@@ -35,19 +34,14 @@ class EventForm
                     ->columnSpanFull()
                     ->hiddenOn('create'),
 
-                Tabs::make('Translations')
-                    ->tabs([
-                        Tab::make('English')
-                            ->schema([
-                                TextInput::make('title.en')->label('Title (EN)')->required(),
-                                Textarea::make('description.en')->label('Description (EN)')->rows(5),
-                            ]),
-                        Tab::make('Shqip')
-                            ->schema([
-                                TextInput::make('title.sq')->label('Title (SQ)'),
-                                Textarea::make('description.sq')->label('Description (SQ)')->rows(5),
-                            ]),
-                    ])->columnSpanFull(),
+                TranslatableTabs::make(fn (string $locale, bool $isDefault) => [
+                    TextInput::make("title.{$locale}")
+                        ->label('Title ('.strtoupper($locale).')')
+                        ->required($isDefault),
+                    Textarea::make("description.{$locale}")
+                        ->label('Description ('.strtoupper($locale).')')
+                        ->rows(5),
+                ]),
 
                 Section::make('Details')
                     ->schema([

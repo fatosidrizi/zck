@@ -19,6 +19,10 @@
         'en' => ['full' => 'English', 'short' => 'EN'],
         'sq' => ['full' => 'Shqip', 'short' => 'SQ'],
         'sr' => ['full' => 'Srpski', 'short' => 'SR'],
+        // The /ro/ prefix is inherited from the old site; the language is Romani.
+        'ro' => ['full' => 'Romani chib', 'short' => 'RO'],
+        'bs' => ['full' => 'Bosanski', 'short' => 'BS'],
+        'tr' => ['full' => 'Türkçe', 'short' => 'TR'],
     ];
 
     $locales = collect(SetLocale::SUPPORTED_LOCALES)->map(function ($locale) use ($current, $path, $query, $names) {
@@ -26,6 +30,7 @@
 
         return [
             'code' => $locale,
+            'tag' => SetLocale::languageTag($locale),
             'label' => $names[$locale]['short'] ?? Str::upper($locale),
             'title' => $names[$locale]['full'] ?? Str::upper($locale),
             'url' => url($target) . ($query ? '?' . $query : ''),
@@ -44,8 +49,8 @@
      aria-label="{{ __('ui.language') }}">
     @foreach($locales as $locale)
         <a href="{{ $locale['url'] }}"
-           lang="{{ $locale['code'] }}"
-           hreflang="{{ $locale['code'] }}"
+           lang="{{ $locale['tag'] }}"
+           hreflang="{{ $locale['tag'] }}"
            title="{{ $locale['title'] }}"
            @if($locale['active']) aria-current="true" @endif
            @class([
