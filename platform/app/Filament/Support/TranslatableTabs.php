@@ -2,51 +2,50 @@
 
 namespace App\Filament\Support;
 
-use App\Http\Middleware\SetLocale;
+use App\Support\Locales;
 use Filament\Schemas\Components\Tabs;
 use Filament\Schemas\Components\Tabs\Tab;
+use Illuminate\Database\Eloquent\Model;
 
 /**
- * Builds one editor tab per supported locale.
+ * Builds one editor tab per supported locale, each flagged with whether it
+ * actually holds a translation.
  *
- * The locale list lives in SetLocale::SUPPORTED_LOCALES, so adding a language
- * there gives every admin form its tab — the same rule the public language
- * switcher follows. Previously each form hardcoded EN and SQ, which is why
- * Serbian content could never be entered even though the site served /sr.
+ * The flag is why this replaces the old status banner: a banner sits far from
+ * the tabs and restates what the tabs should say themselves, so an editor had
+ * to click all six to find the empty ones. Marking the tab puts the answer
+ * where the decision is made.
  */
 class TranslatableTabs
 {
-    /** Endonyms, so a tab is labelled in the language it holds. */
-    public const LOCALE_LABELS = [
-        'en' => 'English',
-        'sq' => 'Shqip',
-        'sr' => 'Srpski',
-        'ro' => 'Romani chib',
-        'bs' => 'Bosanski',
-        'tr' => 'Türkçe',
-    ];
-
     /**
-     * @param  callable(string, bool): array  $fields  Receives the locale and
-     *                                                 whether it is the default
-     *                                                 (required) one.
+     * @param  callable(string, bool): array  $fields  Receives the locale and whether it is the default (required) one.
+     * @param  string|null  $indicatorField  Field whose emptiness marks a locale as untranslated.
      */
-    public static function make(callable $fields): Tabs
+    public static function make(callable $fields, ?string $indicatorField = null): Tabs
     {
-        $default = config('app.locale', 'en');
+        $default = Locales::default();
 
         return Tabs::make('Translations')
             ->tabs(
-                collect(SetLocale::SUPPORTED_LOCALES)
-                    ->map(fn (string $locale) => Tab::make(self::label($locale))
-                        ->schema($fields($locale, $locale === $default)))
+                collect(Locales::all())
+                    ->map(function (string $locale) use ($fields, $default, $indicatorField) {
+                        $tab = Tab::make(Locales::label($locale))
+                            ->schema($fields($locale, $locale === $default));
+
+                        if ($indicatorField === null) {
+                            return $tab;
+                        }
+
+                        // Null badge renders nothing, so only the gaps draw the eye.
+                        return $tab
+                            ->badge(fn (?Model $record) => $record && ! Locales::hasTranslation($record, $indicatorField, $locale)
+                                ? 'Empty'
+                                : null)
+                            ->badgeColor('danger');
+                    })
                     ->all()
             )
             ->columnSpanFull();
-    }
-
-    public static function label(string $locale): string
-    {
-        return self::LOCALE_LABELS[$locale] ?? strtoupper($locale);
     }
 }

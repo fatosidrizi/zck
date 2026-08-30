@@ -35,7 +35,9 @@ class EditNgo extends EditRecord
                 ReviewActions::reject(),
                 ReviewActions::republish(),
                 ReviewActions::unpublish(),
-                DeleteAction::make(),
+                DeleteAction::make()
+                ->color('gray')
+                ->outlined(),
             ]),
         ];
     }

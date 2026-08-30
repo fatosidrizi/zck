@@ -201,37 +201,15 @@ class NgoForm
             ->icon('heroicon-o-globe-alt')
             ->disabled(fn (?Ngo $record) => $record?->isClosed() ?? false)
             ->schema([
-                Placeholder::make('translation_status')
-                    ->hiddenLabel()
-                    ->content(function (?Ngo $record) {
-                        if (! $record) {
-                            return '';
-                        }
-
-                        $missing = [];
-                        foreach (['en' => 'English', 'sq' => 'Shqip', 'sr' => 'Srpski'] as $code => $label) {
-                            if (! $record->getTranslation('name', $code, false)) {
-                                $missing[] = $label;
-                            }
-                        }
-
-                        if (empty($missing)) {
-                            return new HtmlString('<div style="padding:8px 12px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;color:#166534;font-size:13px;">All translations complete</div>');
-                        }
-
-                        return new HtmlString('<div style="padding:8px 12px;background:#fef2f2;border:1px solid #fecaca;border-radius:8px;color:#991b1b;font-size:13px;">Missing translations: <strong>'.implode(', ', $missing).'</strong></div>');
-                    })
-                    ->columnSpanFull()
-                    ->hiddenOn('create'),
 
                 TranslatableTabs::make(fn (string $locale, bool $isDefault) => [
                     TextInput::make("name.{$locale}")
-                        ->label('Name ('.strtoupper($locale).')')
+                        ->label('Name')
                         ->required($isDefault),
                     Textarea::make("description.{$locale}")
-                        ->label('Description ('.strtoupper($locale).')')
+                        ->label('Description')
                         ->rows(4),
-                ]),
+                ], 'name'),
 
                 FileUpload::make('logo')->image()->disk('public')->directory('ngos'),
                 TextInput::make('slug')

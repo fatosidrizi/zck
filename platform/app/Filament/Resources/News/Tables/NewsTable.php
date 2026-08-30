@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\News\Tables;
 
+use App\Filament\Support\TranslationStatus;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -21,17 +22,7 @@ class NewsTable
                     ->searchable()
                     ->limit(40)
                     ->toggleable(),
-                TextColumn::make('translations')
-                    ->label('Lang')
-                    ->badge()
-                    ->state(function ($record): array {
-                        $result = [];
-                        foreach (['en', 'sq', 'sr'] as $locale) {
-                            $result[] = $record->getTranslation('title', $locale, false) ? strtoupper($locale) : strtoupper($locale) . '!';
-                        }
-                        return $result;
-                    })
-                    ->color(fn (string $state): string => str_contains($state, '!') ? 'danger' : 'success')
+                TranslationStatus::column('title')
                     ->toggleable(),
                 TextColumn::make('category')
                     ->badge()
@@ -62,16 +53,7 @@ class NewsTable
                     ->options(['news' => 'News', 'bulletin' => 'Bulletin', 'report' => 'Report']),
                 SelectFilter::make('status')
                     ->options(['draft' => 'Draft', 'published' => 'Published']),
-                Filter::make('missing_translation')
-                    ->label('Missing SQ translation')
-                    ->query(fn (Builder $query) => $query->where(function ($q) {
-                        $q->whereNull('title->sq')->orWhere('title->sq', '');
-                    })),
-                Filter::make('missing_translation_sr')
-                    ->label('Missing SR translation')
-                    ->query(fn (Builder $query) => $query->where(function ($q) {
-                        $q->whereNull('title->sr')->orWhere('title->sr', '');
-                    })),
+                ...TranslationStatus::filters('title'),
             ])
             ->recordActions([
                 EditAction::make(),
