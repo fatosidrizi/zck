@@ -3,7 +3,7 @@
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
                 <div class="flex items-center space-x-3 mb-4">
-                    <img src="{{ asset('images/logo.svg') }}" alt="Kosovo" class="h-12 w-auto">
+                    <img src="{{ asset('images/logo.png') }}" alt="" class="h-12 w-auto">
                     <div>
                         <div class="text-sm font-semibold text-white leading-tight">Zyra për Çështje</div>
                         <div class="text-sm font-semibold text-white leading-tight">të Komuniteteve</div>
