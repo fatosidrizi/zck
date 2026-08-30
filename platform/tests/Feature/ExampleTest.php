@@ -12,8 +12,10 @@ class ExampleTest extends TestCase
      */
     public function test_the_application_returns_a_successful_response(): void
     {
+        // The root redirects to the default locale; the localized homepages
+        // themselves are covered by LocaleTest.
         $response = $this->get('/');
 
-        $response->assertStatus(200);
+        $response->assertRedirect('/'.config('app.locale'));
     }
 }

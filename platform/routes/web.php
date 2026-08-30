@@ -20,7 +20,7 @@ Route::get('/sitemap.xml', [PageController::class, 'sitemap'])->name('sitemap');
 
 // All localized routes
 Route::prefix('{locale}')
-    ->where(['locale' => 'en|sq'])
+    ->where(['locale' => 'en|sq|sr'])
     ->middleware(SetLocale::class)
     ->group(function () {
 

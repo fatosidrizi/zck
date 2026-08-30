@@ -180,6 +180,10 @@ class Ngo extends Model
             $missing[] = __('Albanian translation of the name');
         }
 
+        if (blank($this->getTranslation('name', 'sr', false))) {
+            $missing[] = __('Serbian translation of the name');
+        }
+
         if (blank($this->getTranslation('description', app()->getLocale(), false))) {
             $missing[] = __('Public description');
         }

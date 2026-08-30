@@ -28,7 +28,7 @@ class NgosTable
                     ->badge()
                     ->state(function ($record): array {
                         $result = [];
-                        foreach (['en', 'sq'] as $locale) {
+                        foreach (['en', 'sq', 'sr'] as $locale) {
                             $result[] = $record->getTranslation('name', $locale, false) ? strtoupper($locale) : strtoupper($locale).'!';
                         }
 
@@ -65,6 +65,9 @@ class NgosTable
                 Filter::make('missing_translation')
                     ->label('Missing SQ translation')
                     ->query(fn (Builder $query) => $query->where(fn ($q) => $q->whereNull('name->sq')->orWhere('name->sq', ''))),
+                Filter::make('missing_translation_sr')
+                    ->label('Missing SR translation')
+                    ->query(fn (Builder $query) => $query->where(fn ($q) => $q->whereNull('name->sr')->orWhere('name->sr', ''))),
             ])
             ->recordActions([
                 // Reviewing means opening the record and reading it — the row only offers

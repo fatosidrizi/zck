@@ -340,6 +340,7 @@ class NgoReviewTest extends TestCase
             ->assertSee('The public profile is still incomplete.');
 
         $ngo->setTranslation('name', 'sq', 'Zërat e Komunitetit');
+        $ngo->setTranslation('name', 'sr', 'Glasovi zajednice');
         $ngo->setTranslation('description', 'en', 'We support access to education.');
         $ngo->contact_email = 'info@cvk-example.org';
         $ngo->location = 'Prizren';
@@ -368,10 +369,12 @@ class NgoReviewTest extends TestCase
         $missing = $ngo->missingForPublication();
 
         $this->assertContains('Albanian translation of the name', $missing);
+        $this->assertContains('Serbian translation of the name', $missing);
         $this->assertContains('Public contact e-mail or phone', $missing);
         $this->assertContains('Location', $missing);
 
         $ngo->setTranslation('name', 'sq', 'Zërat e Komunitetit');
+        $ngo->setTranslation('name', 'sr', 'Glasovi zajednice');
         $ngo->setTranslation('description', 'en', 'We support access to education.');
         $ngo->contact_email = 'info@cvk-example.org';
         $ngo->location = 'Prizren';

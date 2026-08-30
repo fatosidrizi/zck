@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\URL;
 
 class SetLocale
 {
-    public const SUPPORTED_LOCALES = ['en', 'sq'];
+    public const SUPPORTED_LOCALES = ['en', 'sq', 'sr'];
 
     public function handle(Request $request, Closure $next)
     {

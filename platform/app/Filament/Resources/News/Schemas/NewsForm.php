@@ -29,7 +29,7 @@ class NewsForm
                     ->content(function ($record) {
                         if (!$record) return '';
                         $missing = [];
-                        foreach (['en' => 'English', 'sq' => 'Shqip'] as $code => $label) {
+                        foreach (['en' => 'English', 'sq' => 'Shqip', 'sr' => 'Srpski'] as $code => $label) {
                             if (!$record->getTranslation('title', $code, false)) {
                                 $missing[] = $label;
                             }

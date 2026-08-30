@@ -26,7 +26,7 @@ class NewsTable
                     ->badge()
                     ->state(function ($record): array {
                         $result = [];
-                        foreach (['en', 'sq'] as $locale) {
+                        foreach (['en', 'sq', 'sr'] as $locale) {
                             $result[] = $record->getTranslation('title', $locale, false) ? strtoupper($locale) : strtoupper($locale) . '!';
                         }
                         return $result;
@@ -66,6 +66,11 @@ class NewsTable
                     ->label('Missing SQ translation')
                     ->query(fn (Builder $query) => $query->where(function ($q) {
                         $q->whereNull('title->sq')->orWhere('title->sq', '');
+                    })),
+                Filter::make('missing_translation_sr')
+                    ->label('Missing SR translation')
+                    ->query(fn (Builder $query) => $query->where(function ($q) {
+                        $q->whereNull('title->sr')->orWhere('title->sr', '');
                     })),
             ])
             ->recordActions([

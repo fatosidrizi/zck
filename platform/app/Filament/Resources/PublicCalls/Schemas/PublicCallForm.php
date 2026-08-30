@@ -28,7 +28,7 @@ class PublicCallForm
                     ->content(function ($record) {
                         if (!$record) return '';
                         $missing = [];
-                        foreach (['en' => 'English', 'sq' => 'Shqip'] as $code => $label) {
+                        foreach (['en' => 'English', 'sq' => 'Shqip', 'sr' => 'Srpski'] as $code => $label) {
                             if (!$record->getTranslation('title', $code, false)) $missing[] = $label;
                         }
                         if (empty($missing)) return new HtmlString('<div style="padding:8px 12px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;color:#166534;font-size:13px;">All translations complete</div>');
