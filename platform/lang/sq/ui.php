@@ -103,6 +103,7 @@ return [
     'download_attachment' => 'Shkarko Bashkëngjitjen',
     'back_to_calls' => 'Kthehu te Thirrjet Publike',
     'no_calls_found' => 'Nuk u gjetën thirrje publike.',
+    'only_in_language' => 'E disponueshme vetëm në :language',
 
     // NGOs
     'ngo_directory' => 'Drejtoria e OJQ-ve',

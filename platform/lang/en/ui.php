@@ -103,6 +103,7 @@ return [
     'download_attachment' => 'Download Attachment',
     'back_to_calls' => 'Back to Public Calls',
     'no_calls_found' => 'No public calls found.',
+    'only_in_language' => 'Only available in :language',
 
     // NGOs
     'ngo_directory' => 'NGO Directory',

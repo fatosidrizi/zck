@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\TranslatesWithFallback;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\Translatable\HasTranslations;
@@ -9,6 +10,7 @@ use Spatie\Translatable\HasTranslations;
 class PublicCall extends Model
 {
     use HasTranslations;
+    use TranslatesWithFallback;
 
     public array $translatable = ['title', 'body'];
 

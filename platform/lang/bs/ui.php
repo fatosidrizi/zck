@@ -103,6 +103,7 @@ return [
     'download_attachment' => 'Preuzmi prilog',
     'back_to_calls' => 'Nazad na javne pozive',
     'no_calls_found' => 'Nije pronađen nijedan javni poziv.',
+    'only_in_language' => 'Dostupno samo na :language',
 
     // NGOs
     'ngo_directory' => 'Direktorij NVO-a',

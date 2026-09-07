@@ -116,6 +116,7 @@ return [
     'download_attachment' => 'Le tele o dokumenti',
     'back_to_calls' => 'Palpale ko publikune kharipya',
     'no_calls_found' => 'Nane arakhle publikune kharipya.',
+    'only_in_language' => 'Ferdi ko :language',
 
     // NGOs
     'ngo_directory' => 'Direktoriumo e NVO-yengo',

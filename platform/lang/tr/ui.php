@@ -103,6 +103,7 @@ return [
     'download_attachment' => 'Eki İndir',
     'back_to_calls' => 'Kamu Çağrılarına Dön',
     'no_calls_found' => 'Hiç kamu çağrısı bulunamadı.',
+    'only_in_language' => 'Yalnızca :language dilinde mevcut',
 
     // NGOs
     'ngo_directory' => 'STK Rehberi',

@@ -54,6 +54,35 @@ class Locales
     }
 
     /**
+     * The locale a field can actually be read in: the requested one when it is
+     * filled, otherwise the first locale that has content.
+     *
+     * Imported records often carry only the language they were written in, and
+     * a strict lookup renders them as an empty row on every other locale's page
+     * — content that exists but looks deleted.
+     */
+    public static function resolveFor(?Model $record, string $field, ?string $locale = null): ?string
+    {
+        if ($record === null) {
+            return null;
+        }
+
+        $locale ??= app()->getLocale();
+
+        if (self::hasTranslation($record, $field, $locale)) {
+            return $locale;
+        }
+
+        foreach (self::all() as $candidate) {
+            if (self::hasTranslation($record, $field, $candidate)) {
+                return $candidate;
+            }
+        }
+
+        return null;
+    }
+
+    /**
      * Locale codes with no value for $field.
      *
      * @return array<int, string>
