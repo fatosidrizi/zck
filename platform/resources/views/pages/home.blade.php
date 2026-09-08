@@ -104,7 +104,7 @@
                     <article class="group bg-white rounded-xl overflow-hidden hover:shadow-xl hover:shadow-gray-200/50 transition-all duration-300 border border-gray-100">
                         <div class="overflow-hidden">
                             @if($article->image)
-                                <img src="{{ asset('storage/' . $article->image) }}" alt="{{ $article->title }}" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                                <img src="{{ asset('storage/' . $article->image) }}" alt="{{ $article->translated('title') }}" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
                             @else
                                 <div class="w-full h-52 bg-gradient-to-br from-[#014DA4]/5 via-[#014DA4]/10 to-[#c8a84e]/5 flex items-center justify-center">
                                     <svg class="w-14 h-14 text-[#014DA4]/15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
@@ -116,8 +116,8 @@
                                 <span class="inline-block px-2.5 py-0.5 text-[11px] font-semibold bg-[#014DA4]/8 text-[#014DA4] rounded-full uppercase tracking-wide">{{ ucfirst($article->category) }}</span>
                                 <span class="text-xs text-gray-400">{{ $article->published_at?->format('M d, Y') }}</span>
                             </div>
-                            <h3 class="font-bold text-gray-900 mb-2 line-clamp-2 text-[15px] leading-snug">
-                                <a href="{{ route('news.show', $article->slug) }}" class="hover:text-[#014DA4] transition">{{ $article->title }}</a>
+                            <h3 class="font-bold text-gray-900 mb-2 line-clamp-2 text-[15px] leading-snug" @if($article->isTranslationFallback('title')) lang="{{ $article->translationLocale('title') }}" @endif>
+                                <a href="{{ route('news.show', $article->slug) }}" class="hover:text-[#014DA4] transition">{{ $article->translated('title') }}</a>
                             </h3>
                         </div>
                     </article>

@@ -1,0 +1,9 @@
+# macOS
+.DS_Store
+
+# Database dumps and archives (never commit content exports)
+*.sql
+*.sql.gz
+*.tgz
+*.tar.gz
+*.zip
