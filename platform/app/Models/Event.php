@@ -10,6 +10,8 @@ class Event extends Model
 {
     use HasTranslations;
 
+    use \App\Models\Concerns\TranslatesWithFallback;
+
     public array $translatable = ['title', 'description'];
 
     protected $fillable = [

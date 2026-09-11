@@ -136,6 +136,15 @@ return [
     'back_to_communities' => 'Kthehu te Komunitetet',
     'region' => 'Rajoni',
     'community_events' => 'Ngjarjet e Komunitetit',
+    'minority_communities' => 'Komunitetet Pakicë',
+    'minority_communities_intro' => 'Kosova është shtëpi e disa komuniteteve joshumicë, secili me gjuhën, kulturën dhe traditat e veta. Zgjidhni një komunitet për të mësuar më shumë rreth tij.',
+    'sustainability' => 'Qëndrueshmëria',
+    'sustainability_desc' => 'Qëndrueshmëria është në qendër të përpjekjeve tona për të ngritur lart komunitetet pakicë, duke siguruar që ata të mund të kapërcejnë të gjitha pengesat dhe të krijojnë një të ardhme më të ndritshme për veten dhe familjet e tyre.',
+    'inclusion' => 'Përfshirja',
+    'inclusion_desc' => 'Ne jemi të përkushtuar për të nxitur një kulturë të përfshirjes, për të thyer barrierat që kanë margjinalizuar historikisht grupet pakicë dhe për të punuar drejt një shoqërie ku të gjithë ndihen të vlerësuar dhe të përfshirë.',
+    'participation' => 'Pjesëmarrja',
+    'participation_desc' => 'Ne nxisim pjesëmarrjen aktive të komuniteteve pakicë në jetën publike dhe në vendimmarrje, në mënyrë që zëri i tyre të formësojë politikat që ndikojnë tek ata.',
+    'read_more' => 'Më shumë',
 
     // Events
     'events_title' => 'Ngjarjet',

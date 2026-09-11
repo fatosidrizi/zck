@@ -149,6 +149,15 @@ return [
     'back_to_communities' => 'Palpale ko komunitetya',
     'region' => 'Regioni',
     'community_events' => 'Ovipya e komunitetesko',
+    'minority_communities' => 'Minoritetune komunitetya',
+    'minority_communities_intro' => 'I Kosova si kher e but bi-majoritetune komunitetenge, sako pe chibyasa, kulturasa thay tradiciensa. Alosar jekh komuniteto te sikljos buteder pa leste.',
+    'sustainability' => 'Durabiliteta',
+    'sustainability_desc' => 'I durabiliteta si ano centro amare zorengo te vazdas e minoritetune komunitetya, sigurindor kaj shaj te nakhen sa e pengipya thay te keren jekh po-shukar avutnipe penge thay penge familienge.',
+    'inclusion' => 'Inkluzia',
+    'inclusion_desc' => 'Amen sam dine te vazdas jekh kultura e inkluziaki, te phagas e barierya save historikane marginalizuisarde e minoritetune grupen, thay te keras butji karing jekh societeta kaj savore hatjaren pes vrednime thay andre.',
+    'participation' => 'Participacia',
+    'participation_desc' => 'Amen vazdas i aktivno participacia e minoritetune komunitetengi ano publikuno jivipe thay ano lipe e decizijengo, te lengo glaso te formirel e politike save len afektinen.',
+    'read_more' => 'Drabar buteder',
 
     // Events
     'events_title' => 'Ovipya',

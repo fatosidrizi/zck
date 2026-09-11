@@ -136,6 +136,15 @@ return [
     'back_to_communities' => 'Nazad na zajednice',
     'region' => 'Region',
     'community_events' => 'Događaji zajednice',
+    'minority_communities' => 'Manjinske zajednice',
+    'minority_communities_intro' => 'Kosovo je dom brojnih nevećinskih zajednica, od kojih svaka ima svoj jezik, kulturu i tradiciju. Izaberite zajednicu da saznate više o njoj.',
+    'sustainability' => 'Održivost',
+    'sustainability_desc' => 'Održivost je u središtu naših napora da osnažimo manjinske zajednice, obezbeđujući da mogu da prevaziđu sve prepreke i izgrade svetliju budućnost za sebe i svoje porodice.',
+    'inclusion' => 'Inkluzija',
+    'inclusion_desc' => 'Posvećeni smo negovanju kulture inkluzije, rušenju barijera koje su istorijski marginalizovale manjinske grupe i radu ka društvu u kojem se svi osećaju cenjeno i uključeno.',
+    'participation' => 'Učešće',
+    'participation_desc' => 'Podstičemo aktivno učešće manjinskih zajednica u javnom životu i donošenju odluka, kako bi njihov glas oblikovao politike koje ih se tiču.',
+    'read_more' => 'Pročitaj više',
 
     // Events
     'events_title' => 'Događaji',

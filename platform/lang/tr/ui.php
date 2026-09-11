@@ -136,6 +136,15 @@ return [
     'back_to_communities' => 'Topluluklara Dön',
     'region' => 'Bölge',
     'community_events' => 'Topluluk Etkinlikleri',
+    'minority_communities' => 'Azınlık Toplulukları',
+    'minority_communities_intro' => 'Kosova, her biri kendi diline, kültürüne ve geleneklerine sahip birçok çoğunluk olmayan topluluğa ev sahipliği yapmaktadır. Hakkında daha fazla bilgi edinmek için bir topluluk seçin.',
+    'sustainability' => 'Sürdürülebilirlik',
+    'sustainability_desc' => 'Sürdürülebilirlik, azınlık topluluklarını güçlendirme çabalarımızın merkezinde yer alır; onların tüm engelleri aşabilmelerini ve kendileri ile aileleri için daha aydınlık bir gelecek kurabilmelerini sağlar.',
+    'inclusion' => 'Kapsayıcılık',
+    'inclusion_desc' => 'Kapsayıcılık kültürünü teşvik etmeye, azınlık gruplarını tarihsel olarak dışlayan engelleri kaldırmaya ve herkesin değerli ve dahil hissettiği bir toplum için çalışmaya kararlıyız.',
+    'participation' => 'Katılım',
+    'participation_desc' => 'Azınlık topluluklarının kamusal yaşama ve karar alma süreçlerine aktif katılımını teşvik ediyoruz; böylece sesleri, kendilerini etkileyen politikaları şekillendirir.',
+    'read_more' => 'Devamını oku',
 
     // Events
     'events_title' => 'Etkinlikler',
