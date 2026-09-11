@@ -26,6 +26,7 @@ class PageController extends Controller
             ->get();
 
         $latestCalls = PublicCall::published()
+            ->withTranslation('title')
             ->orderByDesc('created_at')
             ->limit(5)
             ->get();

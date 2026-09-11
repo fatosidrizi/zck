@@ -10,6 +10,7 @@ class PublicCallController extends Controller
     public function index(Request $request)
     {
         $calls = PublicCall::published()
+            ->withTranslation('title')
             ->when($request->type, fn($q, $type) => $q->where('type', $type))
             ->orderByDesc('created_at')
             ->paginate(15)

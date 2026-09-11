@@ -142,10 +142,21 @@
             </div>
             <div class="space-y-3">
                 @forelse($latestCalls as $call)
+                    @php
+                        $fallbackLocale = $call->isTranslationFallback('title') ? $call->translationLocale('title') : null;
+                    @endphp
                     <a href="{{ route('public-calls.show', $call->slug) }}" class="flex items-center justify-between p-5 bg-gray-50 rounded-xl hover:bg-[#014DA4]/[0.03] hover:border-[#014DA4]/20 transition-all duration-200 border border-gray-100 group">
-                        <div>
-                            <span class="inline-block px-2.5 py-0.5 text-[11px] font-semibold bg-[#c8a84e]/10 text-[#c8a84e] rounded-full uppercase tracking-wide mb-1.5">{{ ucfirst($call->type) }}</span>
-                            <h3 class="font-semibold text-gray-900 group-hover:text-[#014DA4] transition">{{ $call->title }}</h3>
+                        <div class="min-w-0">
+                            <div class="mb-1.5 flex flex-wrap items-center gap-2">
+                                <span class="inline-block px-2.5 py-0.5 text-[11px] font-semibold bg-[#c8a84e]/10 text-[#c8a84e] rounded-full uppercase tracking-wide">{{ ucfirst($call->type) }}</span>
+                                @if($fallbackLocale)
+                                    <span class="rounded-full bg-gray-100 px-2.5 py-0.5 text-[11px] font-medium text-gray-500">
+                                        {{ __('ui.only_in_language', ['language' => \App\Support\Locales::label($fallbackLocale)]) }}
+                                    </span>
+                                @endif
+                            </div>
+                            <h3 class="font-semibold text-gray-900 group-hover:text-[#014DA4] transition"
+                                @if($fallbackLocale) lang="{{ $fallbackLocale }}" @endif>{{ $call->translated('title') }}</h3>
                         </div>
                         <div class="text-right flex-shrink-0 ml-4">
                             @if($call->deadline)

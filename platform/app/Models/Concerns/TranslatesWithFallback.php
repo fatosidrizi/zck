@@ -35,4 +35,23 @@ trait TranslatesWithFallback
 
         return $locale !== null && $locale !== app()->getLocale();
     }
+
+    /**
+     * Only records where $field has content in at least one language.
+     *
+     * A record that is empty in every locale has nothing to fall back to, so
+     * it would render as a card with no title. Public lists exclude it rather
+     * than show a blank row.
+     */
+    public function scopeWithTranslation($query, string $field)
+    {
+        return $query->where(function ($query) use ($field) {
+            foreach (Locales::all() as $locale) {
+                $query->orWhere(function ($query) use ($field, $locale) {
+                    $query->whereNotNull("{$field}->{$locale}")
+                        ->where("{$field}->{$locale}", '!=', '');
+                });
+            }
+        });
+    }
 }
