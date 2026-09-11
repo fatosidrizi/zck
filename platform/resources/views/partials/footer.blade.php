@@ -53,12 +53,10 @@
             <div>
                 <h3 class="text-[#c8a84e] font-semibold mb-4 text-sm uppercase tracking-wider">{{ __('ui.institutions') }}</h3>
                 <ul class="space-y-2 text-sm">
-                    <li><a href="https://www.avokati-popullit.org/" target="_blank" rel="noopener" class="hover:text-[#c8a84e] transition">Ombudsman Office</a></li>
-                    <li><a href="https://ald.rks-gov.net/" target="_blank" rel="noopener" class="hover:text-[#c8a84e] transition">Agency for Legal Aid</a></li>
-                    <li><a href="https://www.language-commissioner.org/" target="_blank" rel="noopener" class="hover:text-[#c8a84e] transition">Language Commissioner</a></li>
+                    <li><a href="https://www.oik-ks.org/" target="_blank" rel="noopener" class="hover:text-[#c8a84e] transition">Ombudsman Office</a></li>
+                    <li><a href="https://anjf.rks-gov.net/ target="_blank" rel="noopener" class="hover:text-[#c8a84e] transition">Agency for Legal Aid</a></li>
+                    <li><a href="https://kryeministri.rks-gov.net/ankesa-komisioneri-i-gjuheve/" target="_blank" rel="noopener" class="hover:text-[#c8a84e] transition">Language Commissioner</a></li>
                     <li><a href="https://kryeministri.rks-gov.net/" target="_blank" rel="noopener" class="hover:text-[#c8a84e] transition">Prime Minister's Office</a></li>
-                    <li><a href="https://www.rfrrae.com/" target="_blank" rel="noopener" class="hover:text-[#c8a84e] transition">Roma, Ashkali & Egyptian Platform</a></li>
-                    <li><a href="https://www.rks-gov.net/" target="_blank" rel="noopener" class="hover:text-[#c8a84e] transition">Government of Kosovo</a></li>
                 </ul>
             </div>
         </div>

@@ -175,7 +175,7 @@
             <h2 class="text-2xl md:text-3xl font-bold text-white mb-3 text-center">{{ __('ui.where_to_report') }}</h2>
             <p class="text-blue-200/70 text-center mb-10 max-w-xl mx-auto text-sm">{{ __('ui.report_discrimination') }}</p>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-                <a href="https://www.avokati-popullit.org/" target="_blank" rel="noopener" class="bg-white/10 backdrop-blur-sm rounded-xl border border-white/10 p-7 hover:bg-white/20 transition-all duration-300 group">
+                <a href="https://oik-ks.org/" target="_blank" rel="noopener" class="bg-white/10 backdrop-blur-sm rounded-xl border border-white/10 p-7 hover:bg-white/20 transition-all duration-300 group">
                     <div class="w-12 h-12 bg-[#c8a84e] rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                         <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/></svg>
                     </div>
