@@ -16,7 +16,7 @@ class PageController extends Controller
         $stats = [
             'ngos' => Ngo::published()->count(),
             'communities' => Community::count(),
-            'donors' => 0,
+            'donors' => collect(config('partners'))->where('donor', true)->count(),
             'events' => Event::count(),
         ];
 

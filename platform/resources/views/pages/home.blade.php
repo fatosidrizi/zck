@@ -319,17 +319,8 @@
     <section class="py-12 bg-white">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h3 class="text-xs uppercase tracking-[0.2em] text-gray-400 font-semibold mb-8">{{ __('ui.partners_donors') }}</h3>
-            @php
-                $partners = [
-                    ['file' => 'office-of-the-prime-minister.png', 'name' => 'Office of the Prime Minister', 'class' => 'h-16'],
-                    ['file' => 'iom.png', 'name' => 'IOM', 'class' => 'h-10'],
-                    ['file' => 'swiss-confederation.png', 'name' => 'Swiss Confederation', 'class' => 'h-10'],
-                    ['file' => 'british-embassy-pristina.svg', 'name' => 'British Embassy Pristina', 'class' => 'h-14'],
-                    ['file' => 'acdc.png', 'name' => 'ACDC', 'class' => 'h-10'],
-                ];
-            @endphp
             <div class="flex flex-wrap justify-center items-center gap-x-12 gap-y-8 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
-                @foreach($partners as $partner)
+                @foreach(config('partners') as $partner)
                     <img src="{{ asset('images/partners/' . $partner['file']) }}"
                          alt="{{ $partner['name'] }}"
                          title="{{ $partner['name'] }}"
