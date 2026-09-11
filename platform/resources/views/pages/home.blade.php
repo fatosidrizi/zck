@@ -264,7 +264,6 @@
                          loading="lazy"
                          class="{{ $partner['class'] }} w-auto max-w-[180px] object-contain">
                 @endforeach
-                <span class="text-lg font-bold text-gray-400">UNDP</span>
             </div>
         </div>
     </section>
