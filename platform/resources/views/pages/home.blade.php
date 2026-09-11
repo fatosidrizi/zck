@@ -211,6 +211,67 @@
         </div>
     </section>
 
+    {{-- Useful Resources --}}
+    @php
+        $resources = [
+            [
+                'title' => __('ui.diploma_verification'),
+                'desc' => __('ui.diploma_verification_desc'),
+                'icon' => 'M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z',
+                'links' => [
+                    ['label' => __('ui.diploma_verification_form'), 'url' => 'https://masht.rks-gov.net/formular-per-aplikim-per-verifikimin-e-diplomave-te-leshuara-nga-universiteti-i-mitrovices-se-veriut/'],
+                    ['label' => __('ui.diploma_verification_online'), 'url' => 'https://ecmikosova.org/verifikimi-i-diplomave-nepermjet-internetit-online-verifikacija-diploma/'],
+                ],
+            ],
+            [
+                'title' => __('ui.kosovo_genu'),
+                'desc' => __('ui.kosovo_genu_desc'),
+                'icon' => 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z',
+                'links' => [
+                    ['label' => __('ui.kosovo_genu_link'), 'url' => 'https://kosovogenu.com/register'],
+                ],
+            ],
+            [
+                'title' => __('ui.superpuna'),
+                'desc' => __('ui.superpuna_desc'),
+                'icon' => 'M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
+                'links' => [
+                    ['label' => __('ui.superpuna_link'), 'url' => 'https://superpuna.rks-gov.net/job-seeker/register'],
+                ],
+            ],
+        ];
+    @endphp
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10 text-center">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-900">{{ __('ui.resources_title') }}</h2>
+                <div class="w-12 h-1 bg-[#c8a84e] rounded-full mt-3 mx-auto"></div>
+                <p class="text-gray-500 mt-4 max-w-xl mx-auto text-sm">{{ __('ui.resources_subtitle') }}</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                @foreach($resources as $resource)
+                    <div class="flex flex-col bg-gradient-to-b from-gray-50 to-white rounded-xl border border-gray-100 p-7 hover:shadow-lg hover:shadow-[#014DA4]/5 hover:border-[#014DA4]/20 transition-all duration-300">
+                        <div class="w-12 h-12 bg-[#014DA4] rounded-xl flex items-center justify-center mb-4 shadow-lg shadow-[#014DA4]/20">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="{{ $resource['icon'] }}"/></svg>
+                        </div>
+                        <h3 class="font-bold text-gray-900 mb-2 text-base">{{ $resource['title'] }}</h3>
+                        <p class="text-sm text-gray-500 leading-relaxed mb-5">{{ $resource['desc'] }}</p>
+                        <ul class="mt-auto space-y-2">
+                            @foreach($resource['links'] as $link)
+                                <li>
+                                    <a href="{{ $link['url'] }}" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-sm font-semibold text-[#014DA4] hover:text-[#013b7a] group">
+                                        {{ $link['label'] }}
+                                        <svg class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
     {{-- Active Organizations --}}
     @if($activeNgos->count())
     <section class="py-16 bg-gray-50">
