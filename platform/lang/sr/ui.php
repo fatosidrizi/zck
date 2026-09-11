@@ -138,6 +138,7 @@ return [
     'community_events' => 'Događaji zajednice',
     'minority_communities' => 'Manjinske zajednice',
     'minority_communities_intro' => 'Kosovo je dom brojnih nevećinskih zajednica, od kojih svaka ima svoj jezik, kulturu i tradiciju. Izaberite zajednicu da saznate više o njoj.',
+    'communities_count' => '{1} :count zajednica|[2,4] :count zajednice|[5,*] :count zajednica',
     'sustainability' => 'Održivost',
     'sustainability_desc' => 'Održivost je u središtu naših napora da osnažimo manjinske zajednice, obezbeđujući da mogu da prevaziđu sve prepreke i izgrade svetliju budućnost za sebe i svoje porodice.',
     'inclusion' => 'Inkluzija',

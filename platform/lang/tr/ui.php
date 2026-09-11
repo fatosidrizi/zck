@@ -138,6 +138,7 @@ return [
     'community_events' => 'Topluluk Etkinlikleri',
     'minority_communities' => 'Azınlık Toplulukları',
     'minority_communities_intro' => 'Kosova, her biri kendi diline, kültürüne ve geleneklerine sahip birçok çoğunluk olmayan topluluğa ev sahipliği yapmaktadır. Hakkında daha fazla bilgi edinmek için bir topluluk seçin.',
+    'communities_count' => ':count topluluk',
     'sustainability' => 'Sürdürülebilirlik',
     'sustainability_desc' => 'Sürdürülebilirlik, azınlık topluluklarını güçlendirme çabalarımızın merkezinde yer alır; onların tüm engelleri aşabilmelerini ve kendileri ile aileleri için daha aydınlık bir gelecek kurabilmelerini sağlar.',
     'inclusion' => 'Kapsayıcılık',

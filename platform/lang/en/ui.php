@@ -138,6 +138,7 @@ return [
     'community_events' => 'Community Events',
     'minority_communities' => 'Minority Communities',
     'minority_communities_intro' => 'Kosovo is home to a number of non-majority communities, each with its own language, culture and traditions. Select a community to learn more about it.',
+    'communities_count' => '{1} :count community|[2,*] :count communities',
     'sustainability' => 'Sustainability',
     'sustainability_desc' => 'Sustainability is at the heart of our efforts to uplift minority communities, ensuring they can overcome every obstacle and build a brighter future for themselves and their families.',
     'inclusion' => 'Inclusion',

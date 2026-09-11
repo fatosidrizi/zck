@@ -151,6 +151,7 @@ return [
     'community_events' => 'Ovipya e komunitetesko',
     'minority_communities' => 'Minoritetune komunitetya',
     'minority_communities_intro' => 'I Kosova si kher e but bi-majoritetune komunitetenge, sako pe chibyasa, kulturasa thay tradiciensa. Alosar jekh komuniteto te sikljos buteder pa leste.',
+    'communities_count' => '{1} :count komuniteto|[2,*] :count komunitetya',
     'sustainability' => 'Durabiliteta',
     'sustainability_desc' => 'I durabiliteta si ano centro amare zorengo te vazdas e minoritetune komunitetya, sigurindor kaj shaj te nakhen sa e pengipya thay te keren jekh po-shukar avutnipe penge thay penge familienge.',
     'inclusion' => 'Inkluzia',

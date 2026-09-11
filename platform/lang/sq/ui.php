@@ -138,6 +138,7 @@ return [
     'community_events' => 'Ngjarjet e Komunitetit',
     'minority_communities' => 'Komunitetet Pakicë',
     'minority_communities_intro' => 'Kosova është shtëpi e disa komuniteteve joshumicë, secili me gjuhën, kulturën dhe traditat e veta. Zgjidhni një komunitet për të mësuar më shumë rreth tij.',
+    'communities_count' => '{1} :count komunitet|[2,*] :count komunitete',
     'sustainability' => 'Qëndrueshmëria',
     'sustainability_desc' => 'Qëndrueshmëria është në qendër të përpjekjeve tona për të ngritur lart komunitetet pakicë, duke siguruar që ata të mund të kapërcejnë të gjitha pengesat dhe të krijojnë një të ardhme më të ndritshme për veten dhe familjet e tyre.',
     'inclusion' => 'Përfshirja',
