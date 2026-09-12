@@ -15,6 +15,11 @@ class LatestReports extends TableWidget
 
     protected static ?string $heading = 'Latest Discrimination Reports';
 
+    public static function canView(): bool
+    {
+        return auth()->user()?->can('viewAny', DiscriminationReport::class) ?? false;
+    }
+
     public function table(Table $table): Table
     {
         return $table

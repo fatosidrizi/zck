@@ -20,7 +20,7 @@ class ReviewActions
             ->label(__('Approve & publish'))
             ->icon(Heroicon::OutlinedCheckCircle)
             ->color('success')
-            ->visible(fn (?Ngo $record) => $record
+            ->visible(fn (?Ngo $record) => static::canReview($record)
                 && ! $record->isClosed()
                 && ! ($record->isApproved() && $record->is_active))
             ->requiresConfirmation()
@@ -53,7 +53,7 @@ class ReviewActions
             ->color('danger')
             // Outlined so the page is not competing red and green shouting at the reviewer.
             ->outlined()
-            ->visible(fn (?Ngo $record) => $record && ! $record->isClosed())
+            ->visible(fn (?Ngo $record) => static::canReview($record) && ! $record->isClosed())
             ->schema([
                 Textarea::make('reason')
                     ->label(__('Reason for rejection'))
@@ -112,7 +112,7 @@ class ReviewActions
             ->label(__('Unpublish'))
             ->icon(Heroicon::OutlinedEyeSlash)
             ->color('gray')
-            ->visible(fn (?Ngo $record) => $record && $record->isApproved() && $record->is_active)
+            ->visible(fn (?Ngo $record) => static::canReview($record) && $record->isApproved() && $record->is_active)
             ->requiresConfirmation()
             ->modalHeading(fn (Ngo $record) => __('Hide :name from the directory?', ['name' => $record->name]))
             ->modalDescription(__('The application stays approved. You can put it back at any time.'))
@@ -132,7 +132,7 @@ class ReviewActions
             ->label(__('Publish again'))
             ->icon(Heroicon::OutlinedEye)
             ->color('success')
-            ->visible(fn (?Ngo $record) => $record && $record->isApproved() && ! $record->is_active)
+            ->visible(fn (?Ngo $record) => static::canReview($record) && $record->isApproved() && ! $record->is_active)
             ->requiresConfirmation()
             ->modalHeading(fn (Ngo $record) => __('Put :name back in the directory?', ['name' => $record->name]))
             ->action(function (Ngo $record) {
@@ -143,6 +143,15 @@ class ReviewActions
                     ->title(__('Published'))
                     ->send();
             });
+    }
+
+    /**
+     * Hidden actions cannot be mounted, so this is the enforcement point as well as
+     * the display rule: editors maintain the profile, admins make the decision.
+     */
+    protected static function canReview(?Ngo $record): bool
+    {
+        return $record !== null && (auth()->user()?->can('review', $record) ?? false);
     }
 
     /**

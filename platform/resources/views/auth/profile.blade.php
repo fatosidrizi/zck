@@ -37,7 +37,7 @@
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">Role</label>
-                        <p class="text-gray-600 capitalize">{{ str_replace('_', ' ', $user->role) }}</p>
+                        <p class="text-gray-600 capitalize">{{ $user->role->getLabel() }}</p>
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">Member Since</label>

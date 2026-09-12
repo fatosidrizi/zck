@@ -86,7 +86,7 @@ class Ngo extends Model
     {
         return $this->isClosed()
             && $user !== null
-            && in_array($user->role, ['super_admin', 'admin'], true);
+            && $user->can('review', $this);
     }
 
     /**

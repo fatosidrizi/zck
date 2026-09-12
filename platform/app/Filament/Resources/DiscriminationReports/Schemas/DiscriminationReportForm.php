@@ -34,7 +34,7 @@ class DiscriminationReportForm
                             ->required(),
                         Select::make('assigned_to')
                             ->label('Assign to Staff')
-                            ->options(User::whereIn('role', ['super_admin', 'admin', 'editor'])->pluck('name', 'id'))
+                            ->options(fn () => User::reportHandlers()->orderBy('name')->pluck('name', 'id'))
                             ->searchable()
                             ->nullable(),
                         Select::make('type')

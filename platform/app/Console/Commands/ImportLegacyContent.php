@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Enums\UserRole;
 use App\Models\News;
 use App\Models\Ngo;
 use App\Models\PublicCall;
@@ -37,7 +38,7 @@ class ImportLegacyContent extends Command
 
         $data = json_decode(file_get_contents($path), true, 512, JSON_THROW_ON_ERROR);
 
-        $author = User::where('role', 'super_admin')->first() ?? User::first();
+        $author = User::where('role', UserRole::SuperAdmin)->first() ?? User::first();
 
         if (! $author) {
             $this->error('No user to attribute imported content to.');

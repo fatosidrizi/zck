@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Enums\UserRole;
 use App\Models\User;
 use App\Services\LegacyNews\NewsUrlImporter;
 use Illuminate\Console\Command;
@@ -20,7 +21,7 @@ class ImportNewsFromUrl extends Command
 
     public function handle(NewsUrlImporter $importer): int
     {
-        $author = User::where('role', 'super_admin')->first() ?? User::first();
+        $author = User::where('role', UserRole::SuperAdmin)->first() ?? User::first();
 
         if (! $author) {
             $this->error('No user to attribute imported content to.');
