@@ -37,6 +37,7 @@
                     </label>
                     <a href="{{ route('password.request') }}" class="text-sm text-[#014DA4] hover:text-[#013b7a]">Forgot password?</a>
                 </div>
+                <x-turnstile />
                 <button type="submit" class="w-full bg-[#32373c] hover:bg-[#23282d] text-white font-semibold py-3 rounded transition">Login</button>
                 <p class="text-center text-sm text-gray-500">Don't have an account? <a href="{{ route('user.register') }}" class="text-[#014DA4] font-medium">Sign up</a></p>
             </form>

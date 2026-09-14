@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\UserRole;
 use App\Models\User;
+use App\Rules\Turnstile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -23,7 +24,10 @@ class AuthController extends Controller
         $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
+            ...Turnstile::rules(),
         ]);
+
+        unset($credentials[Turnstile::FIELD]);
 
         if (Auth::attempt($credentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
