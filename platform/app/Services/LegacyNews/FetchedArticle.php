@@ -5,7 +5,7 @@ namespace App\Services\LegacyNews;
 use Carbon\CarbonImmutable;
 
 /**
- * One article from kryeministri.rks-gov.net, already split per app locale.
+ * One article from one of the source sites, already split per app locale.
  * Produced by the fetcher, consumed by the importer; never touches the DB.
  */
 final class FetchedArticle

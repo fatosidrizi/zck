@@ -13,7 +13,7 @@ use InvalidArgumentException;
 use Throwable;
 
 /**
- * Turns one kryeministri.rks-gov.net link into a draft News record.
+ * Turns one article link from an allowed government site into a draft News record.
  *
  * Each link is independent: a failure leaves nothing half-written, and a link
  * that was already imported is reported as skipped rather than duplicated.
@@ -24,12 +24,12 @@ class NewsUrlImporter
 
     private const MAX_IMAGE_BYTES = 10 * 1024 * 1024;
 
-    public function __construct(private readonly KryeministriArticleFetcher $fetcher) {}
+    public function __construct(private readonly ArticleFetcher $fetcher) {}
 
     public function import(string $url, string $category, User $author): ImportResult
     {
         try {
-            $normalized = KryeministriArticleFetcher::normalizeUrl($url);
+            $normalized = ArticleFetcher::normalizeUrl($url);
         } catch (InvalidArgumentException $e) {
             return ImportResult::failed(trim($url), $e->getMessage());
         }
@@ -106,7 +106,7 @@ class NewsUrlImporter
     private function storeImage(string $imageUrl, string $slug): ?string
     {
         try {
-            $response = Http::withUserAgent(KryeministriArticleFetcher::USER_AGENT)
+            $response = Http::withUserAgent(ArticleFetcher::USER_AGENT)
                 ->timeout(30)
                 ->retry(2, 500, throw: false)
                 ->get($imageUrl);

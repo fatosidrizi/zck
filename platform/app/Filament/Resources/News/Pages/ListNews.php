@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\News\Pages;
 
 use App\Filament\Resources\News\NewsResource;
+use App\Services\LegacyNews\ArticleFetcher;
 use App\Services\LegacyNews\ImportResult;
 use App\Services\LegacyNews\NewsUrlImporter;
 use Filament\Actions\Action;
@@ -37,13 +38,13 @@ class ListNews extends ListRecords
             ->label('Import from URL')
             ->icon(Heroicon::OutlinedArrowDownTray)
             ->color('gray')
-            ->modalHeading('Import news from kryeministri.rks-gov.net')
+            ->modalHeading('Import news from '.implode(', ', ArticleFetcher::HOSTS))
             ->modalDescription('Fetches the Albanian, English and Serbian versions of each article, downloads the cover image, and saves them as drafts for review.')
             ->modalSubmitActionLabel('Import')
             ->schema([
                 Textarea::make('urls')
                     ->label('Article links')
-                    ->placeholder("https://kryeministri.rks-gov.net/news/...\nhttps://kryeministri.rks-gov.net/news/...")
+                    ->placeholder("https://kryeministri.rks-gov.net/news/...\nhttps://mkk.rks-gov.net/news/...\nhttps://mapl.rks-gov.net/news/...")
                     ->helperText('One link per line.')
                     ->rows(6)
                     ->requiredWithout('csv'),

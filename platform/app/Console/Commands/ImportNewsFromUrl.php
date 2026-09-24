@@ -14,10 +14,10 @@ use Illuminate\Console\Command;
 class ImportNewsFromUrl extends Command
 {
     protected $signature = 'zck:import-news-url
-                            {urls* : Article links on kryeministri.rks-gov.net}
+                            {urls* : Article links on kryeministri.rks-gov.net, mkk.rks-gov.net or mapl.rks-gov.net}
                             {--category=news : news, bulletin or report}';
 
-    protected $description = 'Import articles from kryeministri.rks-gov.net as draft news (sq/en/sr)';
+    protected $description = 'Import articles from kryeministri.rks-gov.net, mkk.rks-gov.net or mapl.rks-gov.net as draft news (sq/en/sr)';
 
     public function handle(NewsUrlImporter $importer): int
     {

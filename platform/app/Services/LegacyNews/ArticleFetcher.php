@@ -14,18 +14,24 @@ use RuntimeException;
 use Throwable;
 
 /**
- * Reads an article off kryeministri.rks-gov.net (WordPress + WPML + Elementor
- * + Yoast) and returns it split per app locale.
+ * Reads an article off one of the government WordPress sites (WPML + Elementor)
+ * and returns it split per app locale.
  *
- * The site's REST API answers 403 to everything, so this parses the public
- * HTML instead: Yoast's JSON-LD for title/date/image, the Elementor
- * "theme-post-content" widget for the body, and the WPML language switcher for
- * the URLs of the other language versions (older posts use a different slug
- * per language, so those must never be guessed by prefixing /en/ or /sr/).
+ * The sites' REST API answers 403 to everything, so this parses the public
+ * HTML instead: Yoast's JSON-LD for title/date/image where the site has Yoast
+ * (kryeministri), the Elementor post-info widget and image carousel where it
+ * does not (mkk), the Elementor "theme-post-content" widget for the body, and
+ * the WPML language switcher for the URLs of the other language versions
+ * (older posts use a different slug per language, so those must never be
+ * guessed by prefixing /en/ or /sr/).
  */
-class KryeministriArticleFetcher
+class ArticleFetcher
 {
-    public const HOST = 'kryeministri.rks-gov.net';
+    /** Sites articles may be imported from; the first one is the default for URL resolution. */
+    public const HOSTS = ['kryeministri.rks-gov.net', 'mkk.rks-gov.net', 'mapl.rks-gov.net'];
+
+    /** Site-name suffixes Yoast/WordPress append to <title> and og:title. */
+    private const TITLE_SUFFIXES = ['Kryeministri', 'MKK', 'Ministria e Administrimit te Pushtetit Lokal'];
 
     public const USER_AGENT = 'Mozilla/5.0 (compatible; ZCK-Importer/1.0; +https://zck.rks-gov.net)';
 
@@ -37,6 +43,9 @@ class KryeministriArticleFetcher
 
     /** Tags removed together with their content. */
     private const DROP_TAGS = ['script', 'style', 'noscript', 'iframe', 'figure', 'img', 'picture', 'svg', 'video', 'audio', 'form', 'button', 'template'];
+
+    /** Host of the page being parsed, for resolving root-relative links. */
+    private string $host = self::HOSTS[0];
 
     public function fetch(string $url): FetchedArticle
     {
@@ -89,7 +98,7 @@ class KryeministriArticleFetcher
     /**
      * Canonical https URL with a trailing slash and no query/fragment.
      *
-     * @throws InvalidArgumentException when the link is not an article on the expected host
+     * @throws InvalidArgumentException when the link is not an article on one of the allowed hosts
      */
     public static function normalizeUrl(string $url): string
     {
@@ -102,8 +111,8 @@ class KryeministriArticleFetcher
 
         $host = strtolower(preg_replace('/^www\./', '', $parts['host']));
 
-        if ($host !== self::HOST) {
-            throw new InvalidArgumentException('Only links from '.self::HOST.' can be imported.');
+        if (! in_array($host, self::HOSTS, true)) {
+            throw new InvalidArgumentException('Only links from '.implode(', ', self::HOSTS).' can be imported.');
         }
 
         $path = $parts['path'] ?? '/';
@@ -113,7 +122,7 @@ class KryeministriArticleFetcher
             $path .= '/';
         }
 
-        return 'https://'.self::HOST.$path;
+        return 'https://'.$host.$path;
     }
 
     protected function fetchPage(string $url): ParsedPage
@@ -132,6 +141,8 @@ class KryeministriArticleFetcher
 
     public function parsePage(string $html, string $url): ParsedPage
     {
+        $this->host = strtolower((string) (parse_url($url, PHP_URL_HOST) ?: self::HOSTS[0]));
+
         $doc = new DOMDocument;
         $previous = libxml_use_internal_errors(true);
         // The encoding prolog is the reliable way to make DOMDocument treat the
@@ -213,10 +224,12 @@ class KryeministriArticleFetcher
             return $this->cleanText($h1->textContent);
         }
 
-        $og = $this->meta($xpath, 'og:title');
+        $og = $this->meta($xpath, 'og:title') ?? $xpath->query('//title')->item(0)?->textContent;
 
-        // Yoast appends " - Kryeministri" to the social title.
-        return $this->cleanText(preg_replace('/\s+[-–|]\s+Kryeministri$/u', '', (string) $og));
+        // WordPress appends " - Kryeministri" / " – MKK" to the social and document titles.
+        $suffixes = implode('|', array_map('preg_quote', self::TITLE_SUFFIXES));
+
+        return $this->cleanText(preg_replace('/\s+[-–|]\s+(?:'.$suffixes.')$/u', '', html_entity_decode((string) $og, ENT_QUOTES | ENT_HTML5, 'UTF-8')));
     }
 
     private function publishedAt(DOMXPath $xpath, array $graph): ?CarbonImmutable
@@ -244,6 +257,28 @@ class KryeministriArticleFetcher
             }
         }
 
+        return $this->elementorPostInfoDate($xpath);
+    }
+
+    /**
+     * Sites without Yoast show the date as plain text in Elementor's post-info
+     * widget, e.g. "18/09/2026 12:20". Taken as wall-clock time in the app
+     * timezone so it displays exactly as the source shows it.
+     */
+    private function elementorPostInfoDate(DOMXPath $xpath): ?CarbonImmutable
+    {
+        foreach ($xpath->query('//*[contains(concat(" ", normalize-space(@class), " "), " elementor-post-info__item ")]') as $item) {
+            if (! preg_match('#\b(\d{1,2})/(\d{1,2})/(\d{4})(?:\s+(\d{1,2}):(\d{2}))?\b#', $item->textContent, $m)) {
+                continue;
+            }
+
+            try {
+                return CarbonImmutable::create((int) $m[3], (int) $m[2], (int) $m[1], (int) ($m[4] ?? 0), (int) ($m[5] ?? 0), 0);
+            } catch (Throwable) {
+                continue;
+            }
+        }
+
         return null;
     }
 
@@ -263,7 +298,39 @@ class KryeministriArticleFetcher
 
         $og = $this->meta($xpath, 'og:image');
 
-        return $og !== null && $og !== '' ? $og : null;
+        if ($og !== null && $og !== '') {
+            return $og;
+        }
+
+        return $this->carouselImageUrl($xpath);
+    }
+
+    /**
+     * mkk.rks-gov.net has no featured-image markup or og:image; the cover is
+     * the first slide of an image carousel above the body. Posts without a
+     * cover get the theme's placeholder there, which is not worth importing.
+     */
+    private function carouselImageUrl(DOMXPath $xpath): ?string
+    {
+        $query = '//*[contains(concat(" ", normalize-space(@class), " "), " dynamic-image-carousel ")]//a[@data-lightbox]/@href'
+            .' | //*[contains(concat(" ", normalize-space(@class), " "), " dynamic-image-carousel ")]//img/@data-lazy-src'
+            .' | //*[contains(concat(" ", normalize-space(@class), " "), " dynamic-image-carousel ")]//img/@src';
+
+        foreach ($xpath->query($query) as $attribute) {
+            $url = $this->absoluteUrl($attribute->nodeValue);
+
+            if ($url === null) {
+                continue;
+            }
+
+            if (str_contains(strtolower(basename((string) parse_url($url, PHP_URL_PATH))), 'default-image')) {
+                return null;
+            }
+
+            return $url;
+        }
+
+        return null;
     }
 
     /** @return array<string, string> */
@@ -383,7 +450,7 @@ class KryeministriArticleFetcher
         }
 
         if (str_starts_with($href, '/')) {
-            return 'https://'.self::HOST.$href;
+            return 'https://'.$this->host.$href;
         }
 
         if (preg_match('#^https?://#i', $href)) {
