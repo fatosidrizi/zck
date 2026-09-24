@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Filament\Resources\News\NewsResource;
 use App\Filament\Resources\News\Pages\ListNews;
 use App\Models\News;
 use App\Models\User;
@@ -180,6 +181,35 @@ class NewsUrlImportTest extends TestCase
         $this->assertStringEndsWith('.png', $news->image);
         Storage::disk('public')->assertExists($news->image);
         Http::assertSent(fn ($request) => $request->url() === self::MKK_IMAGE);
+    }
+
+    public function test_an_albanian_only_import_shows_its_title_in_the_admin(): void
+    {
+        $this->fakeSite();
+        $this->actingAs($this->admin);
+
+        $result = $this->importer()->import(self::MKK_EN, 'news', $this->admin);
+        $this->assertTrue($result->isCreated(), $result->message ?? '');
+        $this->assertEqualsCanonicalizing(['sq', 'en'], array_keys($result->record->getTranslations('title')));
+
+        $sqOnly = News::create([
+            'title' => ['sq' => 'Vetëm në shqip'],
+            'slug' => 'vetem-ne-shqip',
+            'body' => ['sq' => '<p>Trupi.</p>'],
+            'category' => 'news',
+            'status' => 'draft',
+            'published_at' => now(),
+            'author_id' => $this->admin->id,
+        ]);
+
+        Livewire::test(ListNews::class)
+            ->assertCanSeeTableRecords([$sqOnly])
+            ->assertSee('Vetëm në shqip')
+            ->assertSee('Shown in Shqip');
+
+        $this->get(NewsResource::getUrl('edit', ['record' => $sqOnly]))
+            ->assertOk()
+            ->assertSee('Vetëm në shqip');
     }
 
     public function test_the_mkk_placeholder_image_is_not_imported_as_a_cover(): void

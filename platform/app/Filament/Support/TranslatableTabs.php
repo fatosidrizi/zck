@@ -27,6 +27,10 @@ class TranslatableTabs
         $default = Locales::default();
 
         return Tabs::make('Translations')
+            // Open on the language the record actually has: an article imported
+            // in Albanian only would otherwise greet the editor with empty
+            // English fields and look like the import lost its title.
+            ->activeTab(fn (?Model $record): int => self::tabIndexFor($record, $indicatorField))
             ->tabs(
                 collect(Locales::all())
                     ->map(function (string $locale) use ($fields, $default, $indicatorField) {
@@ -47,5 +51,16 @@ class TranslatableTabs
                     ->all()
             )
             ->columnSpanFull();
+    }
+
+    /** 1-based index of the first tab with content, the default locale's tab when none. */
+    private static function tabIndexFor(?Model $record, ?string $field): int
+    {
+        $locales = Locales::all();
+        $locale = $field === null ? null : Locales::resolveFor($record, $field, Locales::default());
+
+        $index = array_search($locale ?? Locales::default(), $locales, true);
+
+        return $index === false ? 1 : $index + 1;
     }
 }

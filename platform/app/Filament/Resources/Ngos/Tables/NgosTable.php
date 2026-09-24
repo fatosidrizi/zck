@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Ngos\Tables;
 
+use App\Filament\Support\TranslatedColumn;
 use App\Filament\Support\TranslationStatus;
 use App\Models\Ngo;
 use Filament\Actions\BulkActionGroup;
@@ -21,7 +22,7 @@ class NgosTable
     {
         return $table
             ->columns([
-                TextColumn::make('name')
+                TranslatedColumn::make('name')
                     ->searchable()
                     ->limit(35),
                 TranslationStatus::column('name'),

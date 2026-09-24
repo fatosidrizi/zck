@@ -2,14 +2,13 @@
 
 namespace App\Filament\Resources\Events\Tables;
 
+use App\Filament\Support\TranslatedColumn;
 use App\Filament\Support\TranslationStatus;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
 
 class EventsTable
 {
@@ -17,7 +16,7 @@ class EventsTable
     {
         return $table
             ->columns([
-                TextColumn::make('title')
+                TranslatedColumn::make('title')
                     ->searchable()
                     ->limit(35),
                 TranslationStatus::column('title'),

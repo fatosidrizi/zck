@@ -8,11 +8,14 @@ use App\Filament\Resources\News\Pages\ListNews;
 use App\Filament\Resources\News\Schemas\NewsForm;
 use App\Filament\Resources\News\Tables\NewsTable;
 use App\Models\News;
+use App\Support\Locales;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\Database\Eloquent\Model;
 
 class NewsResource extends Resource
 {
@@ -21,6 +24,14 @@ class NewsResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedNewspaper;
 
     protected static ?string $recordTitleAttribute = 'title';
+
+    /** Page headings and breadcrumbs: fall back to any language the record has. */
+    public static function getRecordTitle(?Model $record): string|Htmlable|null
+    {
+        $locale = Locales::resolveFor($record, 'title');
+
+        return $locale === null ? null : $record->getTranslation('title', $locale, false);
+    }
 
     public static function form(Schema $schema): Schema
     {
