@@ -5,7 +5,7 @@ return [
     'office_name' => 'Topluluk Meseleleri Ofisi',
     'office_subtitle' => 'Başbakanlık Ofisi',
     'platform_line1' => 'Topluluk Meseleleri',
-    'platform_line2' => 'Ofisi Platformu',
+    'platform_line2' => 'Platformu',
     'register_ngo' => 'STK Kaydı',
     'report_discrimination' => 'Ayrımcılık Bildir',
     'login' => 'Giriş',

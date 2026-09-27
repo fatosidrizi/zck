@@ -17,7 +17,7 @@ return [
     // Header
     'office_name' => 'Ofisi vash Komunitetenge Puqipya',
     'office_subtitle' => 'Ofisi e Premierosko',
-    'platform_line1' => 'Platforma e Ofisesko vash',
+    'platform_line1' => 'Platforma vash',
     'platform_line2' => 'Komunitetenge Puqipya',
     'register_ngo' => 'Registrin NVO',
     'report_discrimination' => 'Raportin diskriminacia',

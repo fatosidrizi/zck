@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'ZCK Platform') - Office for Community Issues</title>
-    <meta name="description" content="@yield('meta_description', 'Platform of the Office for Community Issues - Prime Minister Office, Kosovo')">
+    <meta name="description" content="@yield('meta_description', 'Platform for Community Issues - Office for Community Issues, Prime Minister Office, Kosovo')">
     <meta property="og:title" content="@yield('title', 'ZCK Platform') - Office for Community Issues">
-    <meta property="og:description" content="@yield('meta_description', 'Platform of the Office for Community Issues - Prime Minister Office, Kosovo')">
+    <meta property="og:description" content="@yield('meta_description', 'Platform for Community Issues - Office for Community Issues, Prime Minister Office, Kosovo')">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:image" content="{{ asset('images/logo.png') }}">

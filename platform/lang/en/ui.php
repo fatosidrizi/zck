@@ -4,7 +4,7 @@ return [
     // Header
     'office_name' => 'Office for Community Issues',
     'office_subtitle' => "Prime Minister's Office",
-    'platform_line1' => 'Platform of the Office for',
+    'platform_line1' => 'Platform for',
     'platform_line2' => 'Community Issues',
     'register_ngo' => 'Register NGO',
     'report_discrimination' => 'Report Discrimination',

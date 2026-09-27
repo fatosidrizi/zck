@@ -4,7 +4,7 @@ return [
     // Header
     'office_name' => 'Zyra për Çështje të Komuniteteve',
     'office_subtitle' => 'Zyra e Kryeministrit',
-    'platform_line1' => 'Platforma e Zyrës për',
+    'platform_line1' => 'Platforma për',
     'platform_line2' => 'Çështje të Komuniteteve',
     'register_ngo' => 'Regjistro OJQ-në',
     'report_discrimination' => 'Raporto Diskriminimin',

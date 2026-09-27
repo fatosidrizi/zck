@@ -4,7 +4,7 @@ return [
     // Header
     'office_name' => 'Kancelarija za pitanja zajednica',
     'office_subtitle' => 'Kancelarija premijera',
-    'platform_line1' => 'Platforma Kancelarije za',
+    'platform_line1' => 'Platforma za',
     'platform_line2' => 'pitanja zajednica',
     'register_ngo' => 'Registruj NVO',
     'report_discrimination' => 'Prijavi diskriminaciju',
