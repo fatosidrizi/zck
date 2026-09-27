@@ -69,7 +69,7 @@ return [
     'diploma_verification_form' => 'Application form (MESTI)',
     'diploma_verification_online' => 'Online verification instructions',
     'diploma_verification_rulebook' => 'Diploma validity rulebook (MESTI)',
-    'diplomas_verified' => ':count diplomas verified since :year',
+    'diplomas_verified' => 'diplomas verified since :year',
     'kosovo_genu' => 'Kosovo Generation Unlimited',
     'kosovo_genu_desc' => 'A platform bringing together the private sector, the public sector and development partners to empower young people aged 16–24 through skills development and paid internships.',
     'kosovo_genu_link' => 'Register on Kosovo GenU',

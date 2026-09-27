@@ -69,7 +69,7 @@ return [
     'diploma_verification_form' => 'Formulari i aplikimit (MASHT)',
     'diploma_verification_online' => 'Instruksione për verifikimin online',
     'diploma_verification_rulebook' => 'Rregullorja për vlefshmërinë e diplomave (MASHT)',
-    'diplomas_verified' => ':count diploma të verifikuara që nga viti :year',
+    'diplomas_verified' => 'diploma të verifikuara që nga viti :year',
     'kosovo_genu' => 'Kosovo Generation Unlimited',
     'kosovo_genu_desc' => 'Platformë që bashkon sektorin privat, publik dhe partnerët e zhvillimit për të fuqizuar të rinjtë e moshës 16–24 vjeç, duke ofruar mundësi për zhvillim aftësish dhe përvoja pune përmes praktikave me pagesë.',
     'kosovo_genu_link' => 'Regjistrohu në Kosovo GenU',

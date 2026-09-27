@@ -69,7 +69,7 @@ return [
     'diploma_verification_form' => 'Başvuru formu (Eğitim Bakanlığı)',
     'diploma_verification_online' => 'Çevrimiçi doğrulama talimatları',
     'diploma_verification_rulebook' => 'Diploma geçerliliği yönetmeliği (Eğitim Bakanlığı)',
-    'diplomas_verified' => ':count diploma doğrulandı (:year\'ten beri)',
+    'diplomas_verified' => 'diploma doğrulandı (:year\'ten beri)',
     'kosovo_genu' => 'Kosovo Generation Unlimited',
     'kosovo_genu_desc' => '16–24 yaş arası gençleri beceri geliştirme ve ücretli stajlar yoluyla güçlendirmek için özel sektörü, kamu sektörünü ve kalkınma ortaklarını bir araya getiren platform.',
     'kosovo_genu_link' => 'Kosovo GenU\'ya kaydol',

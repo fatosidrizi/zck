@@ -82,7 +82,7 @@ return [
     'diploma_verification_form' => 'Formulari e aplikaciako (MASHT)',
     'diploma_verification_online' => 'Instrukcie pi online verifikacia',
     'diploma_verification_rulebook' => 'Pravilniko vash validiteti e diplomengo (MASHT)',
-    'diplomas_verified' => ':count diplome verifikime kotar o bersh :year',
+    'diplomas_verified' => 'diplome verifikime kotar o bersh :year',
     'kosovo_genu' => 'Kosovo Generation Unlimited',
     'kosovo_genu_desc' => 'Platforma savi ketane anel o privatno sektori, o publikuno sektori thay e partnerya e barvaripaske te zorarel e ternen 16–24 bershenge, dindor shaipya pe barvaripe e aftesiyengo thay potjindi praktika.',
     'kosovo_genu_link' => 'Registrin tut ano Kosovo GenU',

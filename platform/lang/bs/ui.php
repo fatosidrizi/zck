@@ -69,7 +69,7 @@ return [
     'diploma_verification_form' => 'Obrazac za prijavu (MONT)',
     'diploma_verification_online' => 'Upute za online verifikaciju',
     'diploma_verification_rulebook' => 'Pravilnik o validnosti diploma (MONT)',
-    'diplomas_verified' => ':count verificiranih diploma od :year.',
+    'diplomas_verified' => 'verificiranih diploma od :year.',
     'kosovo_genu' => 'Kosovo Generation Unlimited',
     'kosovo_genu_desc' => 'Platforma koja okuplja privatni sektor, javni sektor i razvojne partnere kako bi osnažila mlade uzrasta 16–24 godine kroz razvoj vještina i plaćene prakse.',
     'kosovo_genu_link' => 'Registriraj se na Kosovo GenU',
