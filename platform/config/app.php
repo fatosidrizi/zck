@@ -17,6 +17,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Report Discrimination Link
+    |--------------------------------------------------------------------------
+    |
+    | Every "Report Discrimination" call to action points here, opening in a
+    | new tab. The built-in report form at /report stays reachable directly.
+    |
+    */
+
+    'report_discrimination_url' => 'https://raportodiskriminimin.org/',
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Environment
     |--------------------------------------------------------------------------
     |

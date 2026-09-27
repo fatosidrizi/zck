@@ -43,7 +43,7 @@
                 <h3 class="text-[#c8a84e] font-semibold mb-4 text-sm uppercase tracking-wider">{{ __('ui.resources') }}</h3>
                 <ul class="space-y-2 text-sm">
                     <li><a href="{{ route('register') }}" class="hover:text-[#c8a84e] transition">{{ __('ui.register_ngo') }}</a></li>
-                    <li><a href="{{ route('reports.create') }}" class="hover:text-[#c8a84e] transition">{{ __('ui.report_discrimination') }}</a></li>
+                    <li><a href="{{ config('app.report_discrimination_url') }}" target="_blank" rel="noopener" class="hover:text-[#c8a84e] transition">{{ __('ui.report_discrimination') }}</a></li>
                     <li><a href="{{ route('reports.track') }}" class="hover:text-[#c8a84e] transition">{{ __('ui.track_report') }}</a></li>
                     <li><a href="{{ route('ngos.index') }}" class="hover:text-[#c8a84e] transition">{{ __('ui.ngo_directory') }}</a></li>
                     <li><a href="{{ route('communities.index') }}" class="hover:text-[#c8a84e] transition">{{ __('ui.nav_communities') }}</a></li>

@@ -14,7 +14,9 @@
 ])
 
 @php
-    $href = $action === 'register' ? route('register') : route('reports.create');
+    $href = $action === 'register' ? route('register') : config('app.report_discrimination_url');
+    // Reporting is handled by an external site, so it opens in a new tab.
+    $external = $action === 'report';
     $label = $action === 'register' ? __('ui.register_ngo') : __('ui.report_discrimination');
 
     $palette = [
@@ -33,6 +35,7 @@
 
 <a
     href="{{ $href }}"
+    @if ($external) target="_blank" rel="noopener" @endif
     {{ $attributes->class([
         'text-sm font-semibold px-5 py-2.5 rounded-lg transition text-center whitespace-nowrap',
         'focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#c8a84e]',
