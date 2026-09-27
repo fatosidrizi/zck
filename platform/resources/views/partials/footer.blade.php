@@ -1,6 +1,6 @@
 <footer class="bg-[#1a1a2e] text-gray-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
             <div>
                 <div class="flex items-center space-x-3 mb-4">
                     <img src="{{ asset('images/logo.png') }}" alt="" class="h-12 w-auto">
@@ -43,7 +43,6 @@
                 <h3 class="text-[#c8a84e] font-semibold mb-4 text-sm uppercase tracking-wider">{{ __('ui.resources') }}</h3>
                 <ul class="space-y-2 text-sm">
                     <li><a href="{{ route('register') }}" class="hover:text-[#c8a84e] transition">{{ __('ui.register_ngo') }}</a></li>
-                    <li><a href="{{ config('app.report_discrimination_url') }}" target="_blank" rel="noopener" class="hover:text-[#c8a84e] transition">{{ __('ui.report_discrimination') }}</a></li>
                     <li><a href="{{ route('reports.track') }}" class="hover:text-[#c8a84e] transition">{{ __('ui.track_report') }}</a></li>
                     <li><a href="{{ route('ngos.index') }}" class="hover:text-[#c8a84e] transition">{{ __('ui.ngo_directory') }}</a></li>
                     <li><a href="{{ route('communities.index') }}" class="hover:text-[#c8a84e] transition">{{ __('ui.nav_communities') }}</a></li>
@@ -57,6 +56,16 @@
                     <li><a href="https://anjf.rks-gov.net/" target="_blank" rel="noopener" class="hover:text-[#c8a84e] transition">Agency for Legal Aid</a></li>
                     <li><a href="https://kryeministri.rks-gov.net/ankesa-komisioneri-i-gjuheve/" target="_blank" rel="noopener" class="hover:text-[#c8a84e] transition">Language Commissioner</a></li>
                     <li><a href="https://kryeministri.rks-gov.net/" target="_blank" rel="noopener" class="hover:text-[#c8a84e] transition">Prime Minister's Office</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-[#c8a84e] font-semibold mb-4 text-sm uppercase tracking-wider">{{ __('ui.important_links') }}</h3>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="{{ config('app.report_discrimination_url') }}" target="_blank" rel="noopener" class="hover:text-[#c8a84e] transition">{{ __('ui.report_discrimination') }}</a></li>
+                    <li><a href="https://konkursi.rks-gov.net/jobs?servant=1&amp;institution=27968" target="_blank" rel="noopener" class="hover:text-[#c8a84e] transition">{{ __('ui.link_job_vacancies') }}</a></li>
+                    <li><a href="https://ask.rks-gov.net/" target="_blank" rel="noopener" class="hover:text-[#c8a84e] transition">{{ __('ui.link_statistics') }}</a></li>
+                    <li><a href="https://www.kuvendikosoves.org/Uploads/Data/Files/6/KushtetutaeRepublikesseKosoves_nJ4SXNnEAT.pdf" target="_blank" rel="noopener" class="hover:text-[#c8a84e] transition">{{ __('ui.link_constitution') }}</a></li>
+                    <li><a href="https://ojq.rks-gov.net/Login2.aspx" target="_blank" rel="noopener" class="hover:text-[#c8a84e] transition">{{ __('ui.link_ngo_system') }}</a></li>
                 </ul>
             </div>
         </div>

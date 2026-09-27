@@ -349,6 +349,11 @@ return [
     'quick_links' => 'Hızlı Bağlantılar',
     'resources' => 'Kaynaklar',
     'institutions' => 'Kurumlar',
+    'important_links' => 'Önemli Bağlantılar',
+    'link_job_vacancies' => 'İş İlanları',
+    'link_statistics' => 'Kosova İstatistik Ajansı',
+    'link_constitution' => 'Kosova Cumhuriyeti Anayasası',
+    'link_ngo_system' => 'Çevrimiçi STK Sistemi',
     'footer_address' => 'Hükümet Binası, Rahibe Teresa Bulvarı, Priştine, Kosova Cumhuriyeti',
     'all_rights' => 'Tüm hakları saklıdır.',
 ];

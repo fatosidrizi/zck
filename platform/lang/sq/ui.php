@@ -351,6 +351,11 @@ return [
     'quick_links' => 'Lidhje të Shpejta',
     'resources' => 'Burimet',
     'institutions' => 'Institucionet',
+    'important_links' => 'Linqe të Rëndësishme',
+    'link_job_vacancies' => 'Konkurset për Punë',
+    'link_statistics' => 'Agjencia e Statistikave të Kosovës',
+    'link_constitution' => 'Kushtetuta e Republikës së Kosovës',
+    'link_ngo_system' => 'Sistemi Online i OJQ-ve',
     'footer_address' => 'Ndërtesa e Qeverisë, Bulevardi Nënë Tereza, Prishtinë, Republika e Kosovës',
     'all_rights' => 'Të gjitha të drejtat e rezervuara.',
 ];

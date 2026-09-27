@@ -362,6 +362,11 @@ return [
     'quick_links' => 'Sigane linkya',
     'resources' => 'Resursya',
     'institutions' => 'Institucie',
+    'important_links' => 'Importantne linkya',
+    'link_job_vacancies' => 'Konkursya vash buti',
+    'link_statistics' => 'Agencia e Statistikengi e Kosovaki',
+    'link_constitution' => 'Konstitucia e Republikaki e Kosovaki',
+    'link_ngo_system' => 'Online sistemo e NVO-yengo',
     'footer_address' => 'Governoski Kher, Bulevardi Day Tereza, Prishtina, Republika e Kosovaki',
     'all_rights' => 'Sah hakaya garavde.',
 ];

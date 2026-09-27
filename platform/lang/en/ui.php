@@ -351,6 +351,11 @@ return [
     'quick_links' => 'Quick Links',
     'resources' => 'Resources',
     'institutions' => 'Institutions',
+    'important_links' => 'Important Links',
+    'link_job_vacancies' => 'Job Vacancies',
+    'link_statistics' => 'Kosovo Agency of Statistics',
+    'link_constitution' => 'Constitution of the Republic of Kosovo',
+    'link_ngo_system' => 'Online NGO System',
     'footer_address' => 'Government Building, Mother Teresa Boulevard, Prishtina, Republic of Kosovo',
     'all_rights' => 'All rights reserved.',
 ];

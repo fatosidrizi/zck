@@ -349,6 +349,11 @@ return [
     'quick_links' => 'Brzi linkovi',
     'resources' => 'Resursi',
     'institutions' => 'Institucije',
+    'important_links' => 'Važni linkovi',
+    'link_job_vacancies' => 'Konkursi za posao',
+    'link_statistics' => 'Agencija za statistiku Kosova',
+    'link_constitution' => 'Ustav Republike Kosovo',
+    'link_ngo_system' => 'Online sistem NVO',
     'footer_address' => 'Zgrada Vlade, Bulevar Majke Tereze, Priština, Republika Kosovo',
     'all_rights' => 'Sva prava zadržana.',
 ];
