@@ -221,7 +221,13 @@
                 'links' => [
                     ['label' => __('ui.diploma_verification_form'), 'url' => 'https://masht.rks-gov.net/formular-per-aplikim-per-verifikimin-e-diplomave-te-leshuara-nga-universiteti-i-mitrovices-se-veriut/'],
                     ['label' => __('ui.diploma_verification_online'), 'url' => 'https://ecmikosova.org/verifikimi-i-diplomave-nepermjet-internetit-online-verifikacija-diploma/'],
+                    ['label' => __('ui.diploma_verification_rulebook'), 'url' => config('diplomas.rulebook_url')],
                 ],
+                // Both values are integers from config/diplomas.php, so the markup is safe to print raw.
+                'badge' => __('ui.diplomas_verified', [
+                    'count' => '<span class="text-sm font-bold">'.(int) config('diplomas.verified_count').'</span>',
+                    'year' => (int) config('diplomas.verified_since'),
+                ]),
             ],
             [
                 'title' => __('ui.kosovo_genu'),
@@ -251,8 +257,16 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
                 @foreach($resources as $resource)
                     <div class="flex flex-col bg-gradient-to-b from-gray-50 to-white rounded-xl border border-gray-100 p-7 hover:shadow-lg hover:shadow-[#014DA4]/5 hover:border-[#014DA4]/20 transition-all duration-300">
-                        <div class="w-12 h-12 bg-[#014DA4] rounded-xl flex items-center justify-center mb-4 shadow-lg shadow-[#014DA4]/20">
-                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="{{ $resource['icon'] }}"/></svg>
+                        <div class="flex items-center justify-between gap-3 mb-4">
+                            <div class="w-12 h-12 flex-shrink-0 bg-[#014DA4] rounded-xl flex items-center justify-center shadow-lg shadow-[#014DA4]/20">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="{{ $resource['icon'] }}"/></svg>
+                            </div>
+                            @isset($resource['badge'])
+                                <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl leading-snug bg-[#f6efd9] border border-[#e8d9a8] text-[#6b531a] text-xs font-semibold">
+                                    <svg class="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                                    <span>{!! $resource['badge'] !!}</span>
+                                </span>
+                            @endisset
                         </div>
                         <h3 class="font-bold text-gray-900 mb-2 text-base">{{ $resource['title'] }}</h3>
                         <p class="text-sm text-gray-500 leading-relaxed mb-5">{{ $resource['desc'] }}</p>
